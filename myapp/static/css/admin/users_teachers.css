@@ -1,0 +1,106 @@
+.body-wrapper {
+    font-family: "Mali", serif;
+    margin: 0; /* ลบระยะขอบรอบด้าน */
+    padding: 0; /* ลบระยะ padding รอบด้าน */
+    font-family: 'Arial', sans-serif; /* ตั้งฟอนต์มาตรฐาน */
+    font-size: 16px; /* ขนาดตัวอักษรพื้นฐาน */
+    color: #333; /* สีข้อความพื้นฐาน */
+    background-color: #FFF7F2; /* สีพื้นหลัง */
+    line-height: 1.6; /* ความสูงของบรรทัดให้ดูอ่านง่าย */
+}
+
+.dashboard-container {
+    font-family: "Mali", serif;
+    padding: 10px;
+    background-color: #ffffff;
+    min-height: 50vh; /* ให้เนื้อหาเต็มหน้าจอแนวตั้ง */
+    width: 70%; /* ปรับความกว้างให้เหมาะสม */
+/* จัดให้อยู่ตรงกลาง */
+    border-radius: 10px; /* เพิ่มขอบมน */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเพื่อความสวยงาม */
+    margin-left: 400px;
+    margin-top: 130px; /* เพิ่มระยะห่างจากขอบด้านบน */
+}
+
+.dashboard-title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #663399;
+}
+
+.user-type-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.btn-tab {
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-tab.active {
+    background-color: #ffcccb;
+    color: #fff;
+}
+
+.btn-tab:hover {
+    background-color: #ff9999;
+}
+
+.user-list {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.user-table th,
+.user-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.user-table th {
+    background-color: #ff5733;
+    color: #fff;
+    font-weight: bold;
+}
+.register-teacher {
+    display: flex;
+    justify-content: flex-end; /* ชิดขวา */
+    margin-bottom: 20px; /* เพิ่มระยะห่างจากด้านบน */
+}
+
+.btn-register-teacher {
+    background: linear-gradient(45deg, #FF7D0C, #FF3C00); /* สีส้มไล่โทน */
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-register-teacher:hover {
+    background: linear-gradient(45deg, #FF3C00, #FF7D0C); /* เปลี่ยนสีตอน hover */
+    transform: scale(1.05);
+}

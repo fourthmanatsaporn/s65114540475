@@ -1,0 +1,179 @@
+/* ตั้งค่าพื้นหลัง */
+body {
+    font-family: "Mali", serif;
+    background-color: #fef6f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    margin-top: 50px;
+}
+
+/* กล่องเนื้อหาหลัก */
+.container {
+    margin-top: 5px;
+    width: 600px; /* ⬅️ ขยายให้เหมาะสม */
+    height: 850px;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 2px solid #d9c5bb;
+    margin-bottom: 50px;
+}
+
+/* โลโก้ */
+.logo {
+    width: 80px;
+    margin-bottom: -10px;
+}
+
+/* หัวข้อ */
+h2 {
+    color: #a64b2a;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: -20px;
+}
+
+/* กล่อง QR Code */
+.qr-section {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10x;
+    margin-bottom: 5px; /* ⬅️ ลดช่องว่าง */
+}
+
+/* รูปภาพ QR Code */
+.qr-section img {
+    width: 230px; /* ⬅️ ปรับขนาดให้พอดี */
+    
+    margin-top: -10px;
+    border-radius: 8px;
+    border: 2px solid #d9c5bb;
+}
+
+/* ข้อมูลบัญชี */
+.account-info {
+    font-size: 16px; /* ⬅️ ลดขนาดเพื่อให้พอดี */
+    color: #333;
+    margin: 8px 0;
+}
+
+/* สีตัวเลขบัญชี */
+.account-number {
+    font-weight: bold;
+    color: #333;
+}
+
+/* สีจำนวนเงิน */
+.price {
+    font-weight: bold;
+    color: #0080ff;
+    font-size: 18px;
+}
+
+/* ปุ่มอัปโหลดสลิป */
+.upload-btn {
+    background: #3498db;
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: inline-block;
+    width: auto;
+    margin-top: 5px; /* ⬅️ ลดระยะห่าง */
+}
+
+.upload-btn:hover {
+    background: #2c7ebf;
+}
+#file-name {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* ปุ่มยืนยันการชำระเงิน */
+.confirm-btn {
+    background: #ff7300;
+    color: white;
+    font-size: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 5px;
+    transition: background 0.3s ease;
+}
+
+.confirm-btn:hover {
+    background: #e66300;
+}
+.preview-section {
+    margin-top: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* ⬅️ ทำให้ทุกอย่างอยู่ตรงกลาง */
+}
+#slip-preview {
+    max-width: 100%;
+    width: 60px; /* ⬅️ ปรับขนาด */
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    padding: 5px;
+    display: none;
+}
+
+
+
+/* ป๊อปอัพแจ้งเตือน */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* ✅ ทำพื้นหลังโปร่งใส */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup {
+    border: 1.5px solid #5BE805;
+    background: #ffffff;
+    width: 400px;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content img {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+
+
+.popup-content h2 {
+    font-size: 22px;
+    color: #54dc00;
+    margin-bottom: 8px;
+}
+
+.popup-content p {
+    font-size: 16px;
+    color: #555;
+}

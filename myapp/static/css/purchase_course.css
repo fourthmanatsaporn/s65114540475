@@ -1,0 +1,116 @@
+/* ตั้งค่าพื้นฐาน */
+body {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2;
+    margin: 0;
+    padding: 0;
+}
+
+/* คอนเทนเนอร์หลัก */
+.purchase-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* หัวข้อ */
+.purchase-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF7D0C;
+    margin-bottom: 20px;
+}
+
+/* ข้อมูลคอร์ส */
+.course-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.course-image {
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.course-info h2 {
+    font-size: 22px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.course-info p {
+    font-size: 16px;
+    color: #555;
+}
+
+.course-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FF6F3C;
+}
+
+/* ส่วนของการชำระเงิน */
+.payment-section {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.payment-section h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* QR Code */
+.qr-code img {
+    max-width: 250px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ฟอร์มอัปโหลดสลิป */
+form {
+    margin-top: 15px;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    cursor: pointer;
+}
+
+/* ปุ่มยืนยันการซื้อ */
+.btn-submit {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #218838;
+}

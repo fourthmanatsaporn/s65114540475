@@ -1,0 +1,38 @@
+{% extends 'instructor/base_instructor.html' %}
+{% load static %}
+{% block title %}แก้ไขบทเรียน{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/instructor/edit_video_lesson.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="body-container">
+<div class="edit-container">
+    <h1 class="page-title">แก้ไขบทเรียน</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>ชื่อวิดีโอ</label>
+        <input type="text" name="title" value="{{ lesson.title }}" required>
+
+        <label>คำอธิบาย</label>
+        <textarea name="description" required>{{ lesson.description }}</textarea>
+
+        <label>ระยะเวลา</label>
+        <input type="text" name="duration" value="{{ lesson.duration }}" required>
+
+        <label>อัปโหลดวิดีโอใหม่ (ถ้ามี)</label>
+        <input type="file" name="video_file" accept="video/*">
+
+        <label>เอกสารแนบ</label>
+        <input type="file" name="document">
+        {% if lesson.document %}
+            <p>📄 เอกสารปัจจุบัน: <a href="{{ lesson.document.url }}" target="_blank">{{ lesson.document.name }}</a></p>
+        {% endif %}
+
+        <button type="submit" class="btn-save">บันทึกและกลับสู่รายการคอร์ส</button>
+    </form>
+</div>
+</div>
+{% endblock %}

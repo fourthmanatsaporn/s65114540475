@@ -1,0 +1,72 @@
+.dashboard-container {
+    font-family: "Mali", serif;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-title {
+    font-family: "Mali", serif;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.order-detail {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.order-detail p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.slip-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+    margin: 10px auto;
+}
+
+.btn-back {
+    display: block;
+    width: 200px;
+    text-align: center;
+    background: #ff6600;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px auto;
+    text-decoration: none;
+}
+
+.btn-back:hover {
+    background: #cc5500;
+}
+.btn-approve{
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-approve:hover {
+    background-color: #218838;
+    transform: translateY(-2px); /* เพิ่มเอฟเฟกต์เลื่อนขึ้น */
+}
+
+.btn-reject {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-reject:hover {
+    background-color: #c82333;
+    transform: translateY(-2px); /* เพิ่มเอฟเฟกต์เลื่อนขึ้น */
+}

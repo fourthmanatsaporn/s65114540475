@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}รายละเอียดคอร์สเรียนวิดีโอ{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/course_details.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="course-details-page">
+        <div style="text-align: center; margin-top: 20px;">
+            <h2 class="course-title-no1">รายละเอียดเพิ่มเติม</h2>
+        </div>
+
+        <h1 class="course-title">{{ course.title }}</h1>
+
+        <!-- ส่วนรายละเอียดของคอร์ส -->
+        <div class="course-details-container">
+            <div class="course-images-container">
+                <div class="course-images">
+                    <!-- รูปฝั่งซ้าย -->
+                    <div class="image-left">
+                        {% if course_details.image %}
+                        <img src="{{ course_details.image.url }}" alt="รูปภาพฝั่งซ้าย">
+                        {% endif %}
+                    </div>
+                    <!-- รูปภาพหลักตรงกลาง -->
+                    <div class="image-center">
+                        {% if course.image %}
+                        <img src="{{ course.image.url }}" alt="{{ course.title }}">
+                        {% endif %}
+                    </div>
+                    <!-- รูปฝั่งขวา -->
+                    <div class="image-right">
+                        {% if course_details.additional_image %}
+                        <img src="{{ course_details.additional_image.url }}" alt="รูปภาพฝั่งขวา">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- รายละเอียดคอร์ส -->
+            <div class="course-description">
+                <h2>รายละเอียดคอร์ส</h2>
+                <p>{{ course_details.description }}</p>
+                <p>{{ course_details.additional_description }}</p>
+            </div>
+
+            <!-- วิดีโอตัวอย่าง -->
+            {% if course_details.preview_video %}
+            <div class="preview-video">
+                <h3>วิดีโอตัวอย่าง</h3>
+                <video width="600" controls>
+                    <source src="{{ course_details.preview_video.url }}" type="video/mp4">
+                    เบราว์เซอร์ของคุณไม่รองรับวิดีโอ
+                </video>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</body>
+{% endblock %}

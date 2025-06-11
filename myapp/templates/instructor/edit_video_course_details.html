@@ -1,0 +1,47 @@
+{% extends 'instructor/base_instructor.html' %}
+{% load static %}
+{% block title %}แก้ไขรายละเอียดคอร์ส{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/instructor/edit_video_course_details.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="edit-container">
+    <h1 class="page-title">แก้ไขรายละเอียดคอร์ส</h1>
+    <form method="post" enctype="multipart/form-data" class="edit-form">
+        {% csrf_token %}
+        <label>ชื่อรายละเอียด</label>
+        <input type="text" name="name" value="{{ course_details.name }}" required>
+
+        <label>คำอธิบาย</label>
+        <textarea name="description" required>{{ course_details.description }}</textarea>
+
+        <label>คำอธิบายเพิ่มเติม</label>
+        <textarea name="additional_description">{{ course_details.additional_description }}</textarea>
+
+        <label>รูปภาพหลัก</label>
+        <input type="file" name="image">
+        {% if course_details.image %}
+            <img src="{{ course_details.image.url }}" width="100px" class="preview-img">
+        {% endif %}
+
+        <label>รูปภาพเพิ่มเติม</label>
+        <input type="file" name="additional_image">
+        {% if course_details.additional_image %}
+            <img src="{{ course_details.additional_image.url }}" width="100px" class="preview-img">
+        {% endif %}
+
+        <label>วิดีโอตัวอย่าง</label>
+        <input type="file" name="preview_video">
+        {% if course_details.preview_video %}
+            <video width="200px" controls>
+                <source src="{{ course_details.preview_video.url }}" type="video/mp4">
+                เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+            </video>
+        {% endif %}
+
+        <button type="submit" class="btn-save">บันทึกและไปหน้าถัดไป</button>
+    </form>
+</div>
+{% endblock %}

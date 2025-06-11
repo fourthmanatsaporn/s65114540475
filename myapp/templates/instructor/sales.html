@@ -1,0 +1,98 @@
+{% extends 'instructor/base_instructor.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/instructor/sales.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+{% block title %}รายการการขาย{% endblock %}
+
+{% block content %}
+<body class="body-wrapper">
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">รายการ<span style="color: orange;">คอร์ส</span> <span style="color: #0080ff;">เรียน</span></h1>
+
+        <!-- ✅ กล่องแสดงจำนวนคอร์ส -->
+        <div class="sales-summary">
+            <a href="{% url 'instructor_sales' %}?type=booking" class="summary-box booking-box {% if active_tab == 'booking' %}active{% endif %}">
+                <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <h2>{{ booked_courses.count }}</h2>
+                <p>คอร์สเรียนที่มีการจอง</p>
+            </a>
+            <a href="{% url 'instructor_sales' %}?type=video" class="summary-box video-box {% if active_tab == 'video' %}active{% endif %}">
+                <div class="icon"><i class="fas fa-video"></i></div>
+                <h2>{{ purchased_courses.count }}</h2>
+                <p>คอร์สวิดีโอที่มีการซื้อ</p>
+            </a>
+        </div>
+
+        {% if active_tab == 'booking' %}
+        <h2>📚 รายการคอร์สเรียนที่มีการจอง</h2>
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>รูปคอร์ส</th>
+                    <th>ชื่อคอร์ส</th>
+                    <th>จำนวนการจอง</th>
+                    <th>ดูรายละเอียด</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in booked_courses %}
+                <tr>
+                    <td><img src="{{ course.image.url }}" alt="{{ course.title }}" class="course-image"></td>
+                    <td><a href="{% url 'booking_detail' course.id %}" class="course-link">{{ course.title }}</a></td>
+                    <td>{{ course.booking_count }}</td>
+                    <td>
+                        <a href="{% url 'instructor_booking_detail' course.id %}" class="btn-view">
+                            <i class="fas fa-eye"></i> ดู
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">ไม่มีข้อมูล</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+        {% if active_tab == 'video' %}
+        <h2>🎥 รายการคอร์สวิดีโอที่มีการซื้อ</h2>
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>รูปคอร์ส</th>
+                    <th>ชื่อคอร์ส</th>
+                    <th>จำนวนการซื้อ</th>
+                    <th>ดูรายละเอียด</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in purchased_courses %}
+                <tr>
+                    <td><img src="{{ course.image.url }}" alt="{{ course.title }}" class="course-image"></td>
+                    <td><a href="{% url 'video_order_detail_instructor' course.id %}" class="course-link">{{ course.title }}</a></td>
+                    <td>{{ course.purchase_count }}</td>
+                    <td>
+                        <a href="{% url 'video_order_detail_instructor' course.id %}" class="btn-view">
+                            <i class="fas fa-eye"></i> ดู
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">ไม่มีข้อมูล</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        
+    </div>
+</body>
+{% endblock %}

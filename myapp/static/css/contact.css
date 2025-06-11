@@ -1,0 +1,151 @@
+/* General Styles */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Mali", serif;/* เปลี่ยนฟอนต์หลักของหน้าเว็บ */
+    background-color: #FFF7F2;
+    color: #333;
+}
+
+/* Header */
+header {
+    padding-bottom: 20px; 
+    z-index: 10;
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #FF5733;
+    margin-bottom: 30px;
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Map Section */
+.map-section {
+    text-align: center;
+}
+
+.map-section h2 {
+    font-size: 1.8rem;
+    color: #E87007;
+    margin-bottom: 50px;
+}
+
+.map-section h3 {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: #18A9E4;
+    padding: 40px;
+    
+}
+
+
+
+/* Info and Image Section */
+.info-and-image {
+    display: flex;
+    gap: -50px; /* ระยะห่างระหว่างข้อความและรูป */
+    align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+    
+}
+
+/* Info Section */
+.info-section {
+    flex: 1; /* ให้กินพื้นที่เท่ากับรูปภาพ */
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-section h2 {
+    font-size: 1.5rem;
+    color: #E87007;
+    margin-bottom: 10px;
+}
+
+.info-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-section p {
+    font-size: 1rem;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #613E74;
+}
+
+.info-section ul li {
+    font-size: 1rem;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #613E74;
+}
+
+/* เปลี่ยนสีไอคอนเบอร์โทร */
+.info-section ul li i.fa-phone-alt {
+    color: #3498db; /* สีฟ้า */
+}
+
+/* เปลี่ยนสีไอคอน LINE */
+.info-section ul li i.fa-line {
+    color: #00c300; /* สีเขียว LINE */
+}
+
+/* เปลี่ยนสีไอคอน Facebook */
+.info-section ul li i.fa-facebook {
+    color: #3b5998; /* สี Facebook */
+}
+
+/* Image Section */
+.image-section {
+    flex: 1; /* ให้กินพื้นที่เท่ากับข้อความ */
+    display: flex;
+    justify-content: center;
+}
+
+.image-section img {
+    width: 100%; /* ใช้พื้นที่เต็มของคอนเทนเนอร์ */
+    max-width: 450px; /* จำกัดขนาดความกว้างสูงสุด */
+    height: auto; /* รักษาอัตราส่วนของรูป */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* ✅ Responsive */
+@media (max-width: 1024px) {
+    .register-container {
+        width: 60%;
+    }
+}
+
+@media (max-width: 768px) {
+    .register-container {
+        width: 90%;
+    }
+
+    input, .btn-register {
+        width: 100%;
+    }
+}

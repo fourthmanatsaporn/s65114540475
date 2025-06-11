@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/booking_my_courses.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+<body>
+    <div class="container1">
+        <h1 class="page-title">ข้อมูลการจองสำหรับ: <span class="course-title">{{ course.title }}</span></h1>
+
+        <div class="booking-list">
+            {% for booking in bookings %}
+            <div class="booking-card">
+                <div class="booking-header">
+                    <h3> ผู้จอง: <span class="highlight">{{ booking.student_name }} ({{ booking.nickname_th }})</span></h3>
+                    <p>อีเมล: <span class="info">{{ booking.user.email }}</span></p>
+                </div>
+
+                <div class="booking-body">
+                    <div class="left-section">
+                        <h4>📚 ข้อมูลนักเรียน</h4>
+                        <p>ชื่อ-นามสกุล: <span class="info">{{ booking.student_name }} </span></p>
+                        <p>ชื่อ-นามสกุล(ภาษาอังกฤษ): <span class="info">{{ booking.student_name_en }} </span></p>
+                        <p>ชื่อเล่น: <span class="info">{{ booking.nickname_th }} </span></p>
+                        <p>ชื่อเล่น(ภาษาอังกฤษ): <span class="info">{{ booking.nickname_en }} </span></p>
+                        <p>ระดับชั้น: <span class="info">{{ booking.grade }} {% if booking.other_grade %} ({{ booking.other_grade }}) {% endif %}</span></p>
+                        <p>อายุ: <span class="info">{{ booking.age }} ปี</span></p>
+
+                        <h4>👨‍👩‍👧‍👦 ข้อมูลผู้ปกครอง</h4>
+                        <p> ชื่อเล่น: <span class="info">{{ booking.parent_nickname }}</span></p>
+                        <p> โทรศัพท์: <span class="info">{{ booking.phone }}</span></p>
+                        <p> Line ID: <span class="info">{{ booking.line_id|default:"-" }}</span></p>
+                    </div>
+
+                    <div class="right-section">
+                        <h4>💳 การชำระเงิน</h4>
+                        <p>สถานะ: <span class="status1 {{ booking.booking_status }}">{{ booking.get_booking_status_display }}</span></p>
+
+                        {% if booking.payment_slip %}
+                        <div class="payment-slip">
+                            <h4>📷 สลิปการโอน</h4>
+                            <img src="{{ booking.payment_slip.url }}" alt="สลิปการโอน" class="slip-image">
+                        </div>
+                        {% else %}
+                        <p class="no-slip">❌ ยังไม่มีการอัปโหลดสลิปการโอน</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="no-booking">❌ ยังไม่มีผู้จองคอร์สนี้</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+{% endblock %}

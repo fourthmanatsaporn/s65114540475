@@ -1,0 +1,47 @@
+    {% extends 'instructor/base_instructor.html' %}
+    {% load static %}
+    {% block title %}เพิ่มคอร์สเรียนแบบวิดีโอ{% endblock %}
+
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/instructor/add_video_course.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Mali:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    {% endblock %}
+
+    {% block content %}
+    <div class="body-container">
+        <div class="breadcrumbs">
+            <a href="{% url 'instructor_live_courses' %}">คอร์สเรียนแบบวิดีโอ</a> > <span>เพิ่มคอร์สเรียน</span>
+        </div>
+        <div class="add-course-container">
+            <div class="form-header">
+                <h1>เพิ่มคอร์สเรียนแบบวิดีโอ</h1>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title">ชื่อคอร์ส</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">คำอธิบาย</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="price">ราคา</label>
+                    <input type="number" id="price" name="price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="instructor">ชื่อผู้สอน</label>
+                    <input type="text" id="instructor" name="instructor" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">รูปภาพหลักของคอร์ส</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn-submit">บันทึกและไปเพิ่มรายละเอียดคอร์สเรียน</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}

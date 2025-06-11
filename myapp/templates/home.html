@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome | I say ROAR{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<main class="contact-container">
+
+    <div style="height: 90px;"></div>
+
+    <h1   class="welcome1" > 
+        <span class="welcome">Welcome to</span>
+        <span class="i">I</span>
+        <span class="say">say</span>
+        <span class="roar">ROAR!</span>
+    </h1>
+
+    <div class="banner">
+        <!-- ปุ่ม Previous -->
+        <button class="prev" onclick="showPrevSlide()">❮</button>
+        
+        <div class="slider">
+            {% for banner in banners %}
+            <div class="slide">
+                <img src="{{ banner.image.url }}" alt="Banner {{ forloop.counter }}">
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- ปุ่ม Next -->
+        <button class="next" onclick="showNextSlide()">❯</button>
+    </div>
+    
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slide');
+    let currentIndex = 0;
+
+    function showNextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function adjustSlideSize() {
+        const bannerWidth = document.querySelector('.banner').offsetWidth;
+        slides.forEach(slide => {
+            slide.style.width = `${bannerWidth}px`;
+        });
+    }
+
+    // ปรับขนาดสไลด์เมื่อโหลดหน้าเว็บและเมื่อปรับขนาดหน้าจอ
+    adjustSlideSize();
+    window.addEventListener('resize', adjustSlideSize);
+
+    setInterval(showNextSlide, 3000); // สไลด์ทุกๆ 3 วินาที
+});
+    </script>
+    
+    <!-- Welcome Section -->
+    <section class="welcome">
+        <h1>I say ROAR!</h1>
+        <h1 style="line-height: 1.8; font-size: 25px; ">พัฒนาทักษะภาษาผ่านกิจกรรม</h>
+        <p style="line-height: 1.8; font-size: 16px; ">
+            เรียนรู้ผ่านการเล่น สร้างพื้นฐานการเรียนที่แข็งแกร่ง<br>
+            พร้อมเสริมทักษะด้านภาษาอังกฤษ<br>
+            สมัครเลยวันนี้! มาร่วมสนุกและพัฒนาทักษะไปพร้อมกันที่ <br>
+            ISR!
+        </p>
+    </section>
+    
+    <!-- Content based on login status -->
+    {% if request.user.is_authenticated %}
+        <!-- Content for logged-in users -->
+        <section class="user-greeting">
+            <img src="{% static 'images/logo00.png' %}" alt="Logo">
+            <h2>ยินดีต้อนรับ, {{ request.user.first_name }}!</h2>
+            <p>คุณสามารถดูคอร์สแนะนำและเริ่มเรียนรู้ได้เลย!</p>
+        </section>
+        <!-- Display user-specific courses -->
+        <div class="courses">
+            <h2>คอร์สแนะนำ</h2>
+        </div>
+    
+        <section class="course-section">
+            <h2 class="section-title">คอร์สเรียนวิดีโอใหม่ล่าสุด</h2>
+            <hr class="section-divider">
+            <div class="course-list">
+                {% for course in video_courses %}
+                <div class="course-item">
+                    <img src="{{ course.image.url }}" alt="{{ course.title }}">
+                    <h3>{{ course.title }}</h3>
+                    <p>{{ course.description|truncatewords:15 }}</p>
+                    <p class="price">{{ course.price }} บาท</p>
+            
+                    <!-- เช็คสถานะการซื้อ -->
+                    {% if course.id in purchased_video_course_ids %}
+                        {% for order in purchased_video_courses %}
+                            {% if order.course_id == course.id %}
+                                {% if order.payment_status == "confirmed" %}
+                                    <a href="{% url 'video_lesson_view' course.id %}" class="btn-watch-video">ดูวิดีโอ</a>
+                                {% elif order.payment_status == "pending" %}
+                                    <button class="btn-pending" disabled>รอการตรวจสอบ</button>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <a href="{% url 'purchase_video_course' course.id %}" class="btn-course-1">ซื้อคอร์ส</a>
+                    {% endif %}
+                </div>
+            {% empty %}
+            <p>ไม่มีคอร์สวิดีโอที่พร้อมใช้งานในขณะนี้</p>
+            {% endfor %}
+            
+            </div>
+        </section>
+        
+        
+        
+        <section class="course-section">
+            <h2 class="section-title">คอร์สเรียนออนไซต์ใหม่ล่าสุด</h2>
+            <hr class="section-divider">
+            <div class="course-list">
+                {% for course in courses %}
+                {% if not course.is_closed %} 
+                <div class="course-item">
+                    <!-- ✅ คลิกที่ card เพื่อไปหน้า course_details -->
+                    <a href="{% url 'course_details' course.id %}" class="course-link">
+                        <img src="{{ course.image.url }}" alt="{{ course.title }}">
+                        <h3>{{ course.title }}</h3>
+                        <p>{{ course.instructor }}</p>
+                        <p>{{ course.price }} บาท</p>
+                    </a>
+        
+                    <!-- ✅ ปุ่ม "จองคอร์ส" เชื่อมไปหน้าอื่น -->
+                    <a href="{% url 'booking_course' course.id %}" class="btn-course-2">จองคอร์ส</a>
+
+
+                </div>
+                {% endif %}
+                {% empty %}
+                <p>ไม่มีคอร์สที่พร้อมใช้งานในขณะนี้</p>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+</main>
+{% endblock %}

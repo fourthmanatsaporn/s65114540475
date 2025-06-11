@@ -1,0 +1,180 @@
+/* ✅ ตั้งค่าพื้นฐานของหน้า */
+.body-wrapper {
+    font-family: "Mali", serif;
+    margin: 0; /* ลบระยะขอบรอบด้าน */
+    padding: 0; /* ลบระยะ padding รอบด้าน */
+    font-family: 'Arial', sans-serif; /* ตั้งฟอนต์มาตรฐาน */
+    font-size: 16px; /* ขนาดตัวอักษรพื้นฐาน */
+    color: #333; /* สีข้อความพื้นฐาน */
+    background-color: #FFF7F2; /* สีพื้นหลัง */
+    line-height: 1.6; /* ความสูงของบรรทัดให้ดูอ่านง่าย */
+}
+
+/* ✅ กล่องหลักของแอดมิน */
+.admin-container1 {
+    font-family: "Mali", serif;
+    padding: 10px;
+    background-color: #ffffff;
+    min-height: 50vh; /* ให้เนื้อหาเต็มหน้าจอแนวตั้ง */
+    width: 70%; /* ปรับความกว้างให้เหมาะสม */
+/* จัดให้อยู่ตรงกลาง */
+    border-radius: 10px; /* เพิ่มขอบมน */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเพื่อความสวยงาม */
+    margin-left: 400px;
+    margin-top: 130px; /* เพิ่มระยะห่างจากขอบด้านบน */
+}
+
+/* ✅ หัวข้อ */
+.admin-title {
+    font-size: 24px;
+    color: #613E74;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* ✅ ตาราง */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: #FFF;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table th {
+    background: #E53935;
+    color: white;
+    padding: 12px;
+    text-align: center;
+}
+
+.admin-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* ✅ รูปเบนเนอร์ */
+.banner-preview {
+    width: 150px;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ ปุ่มอนุมัติ */
+.btn-approve {
+    background: #66BB6A;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-approve:hover {
+    background: #4CAF50;
+    transform: scale(1.05);
+}
+
+/* ✅ ปุ่มไม่อนุมัติ */
+.btn-reject {
+    background: #FF5733;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-reject:hover {
+    background: #E53935;
+    transform: scale(1.05);
+}
+
+/* ✅ ช่องกรอกเหตุผล */
+input[name="rejection_message"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* ✅ ข้อความไม่มีเบนเนอร์ */
+.text-center {
+    font-size: 16px;
+    color: #777;
+    padding: 15px;
+}
+/* ✅ ปรับสไตล์ป๊อปอัพ */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+textarea {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-submit {
+    background: #FF5733;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: #E53935;
+    transform: scale(1.05);
+}
+
+.btn-cancel {
+    background: #ccc;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background: #999;
+}

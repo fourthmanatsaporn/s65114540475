@@ -1,0 +1,147 @@
+/* ✅ กำหนดฟอนต์และพื้นหลัง */
+body {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ✅ กล่องหลัก */
+.container {
+    max-width: 600px;
+    width: 90%;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* ✅ หัวข้อหลัก */
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #FF4081;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ ส่วนของการแสดงรายละเอียดคอร์ส */
+.course-preview {
+    background: linear-gradient(135deg, #E3F2FD, #F8BBD0);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.course-preview h2 {
+    font-size: 24px;
+    color: #D81B60;
+    margin-bottom: 10px;
+}
+
+.course-preview h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* ✅ รูปคอร์ส */
+.course-image {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+}
+
+/* ✅ กล่องข้อมูลนักเรียน */
+.section {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+/* ✅ หัวข้อย่อย */
+h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #673AB7;
+    margin-bottom: 10px;
+}
+
+/* ✅ ป้ายกำกับ (label) */
+label {
+    display: block;
+    font-weight: 600;
+    margin-top: 10px;
+    color: #444;
+}
+
+/* ✅ ปรับแต่ง input และ select */
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 2px solid #CCC;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* ✅ Animation เมื่อ focus */
+input:focus, select:focus {
+    border-color: #FF4081;
+    background-color: #FFF3E0;
+    box-shadow: 0 0 8px rgba(255, 64, 129, 0.5);
+    outline: none;
+}
+
+/* ✅ ปรับแต่งปุ่ม */
+button {
+    padding: 12px 15px;
+    background: linear-gradient(135deg, #FF4081, #D81B60);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(255, 64, 129, 0.3);
+    margin-top: 10px;
+}
+
+/* ✅ Animation เมื่อ hover */
+button:hover {
+    background: linear-gradient(135deg, #D81B60, #FF4081);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(255, 64, 129, 0.4);
+}
+
+/* ✅ Animation เมื่อคลิก */
+button:active {
+    transform: scale(0.95);
+}
+
+/* ✅ กล่อง dropdown "อื่นๆ" ซ่อนอยู่ */
+#other-grade {
+    display: none;
+}
+
+/* ✅ ฟอร์มจอง */
+.form-container {
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+}

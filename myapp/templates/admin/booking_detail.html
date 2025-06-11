@@ -1,0 +1,120 @@
+    {% extends 'admin/base_admin.html' %}
+    {% load static %}
+
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/admin/booking_detail.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    {% endblock %}
+
+    {% block title %}รายละเอียดการจองคอร์ส{% endblock %}
+
+    {% block content %}
+    <body class="body-wrapper">
+        <div class="dashboard-container">
+            <h1 class="dashboard-title"> รายละเอียดการจอง - <span style="color:#ff6b6b;">{{ course.title }}</span></h1>
+
+            <!-- ✅ ฟอร์มค้นหานักเรียน -->
+            <form method="GET" class="search-form">
+                <input type="text" name="search" placeholder=" ค้นหาชื่อนักเรียน..." value="{{ request.GET.search }}">
+                <button type="submit"><i class="fas fa-search"></i> ค้นหา</button>
+            </form>
+
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>ชื่อ-นามสกุล (ไทย)</th>
+                        <th>ชื่อ-นามสกุล (อังกฤษ)</th>
+                        <th>ชื่อเล่น (ไทย)</th>
+                        <th>ชื่อเล่น (อังกฤษ)</th>
+                        <th>อายุ</th>
+                        <th>ระดับชั้น</th>
+                        <th>ชื่อเล่นผู้ปกครอง</th>
+                        <th>เบอร์โทร</th>
+                        <th>ไอดีไลน์</th>
+                        <th>อีเมลผู้จอง</th>
+                        <th>เวลาที่จอง</th>
+                        <th>สลิปการโอน</th>
+                        <th>สถานะ</th>
+                        <th>การจัดการ</th>
+                        <th>เวลาการจอง</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.student_name }}</td>
+                        <td>{{ booking.student_name_en }}</td>
+                        <td>{{ booking.nickname_th }}</td>
+                        <td>{{ booking.nickname_en }}</td>
+                        <td>{{ booking.age }}</td>
+                        <td>{{ booking.grade }}</td>
+                        <td>{{ booking.parent_nickname }}</td>
+                        <td>{{ booking.phone }}</td>
+                        <td>
+                            {% if booking.line_id %}
+                                {{ booking.line_id }}
+                            {% else %}
+                                <span class="text-muted">ไม่มี</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if booking.user %}
+                                {{ booking.user.email }}
+                            {% else %}
+                                <span class="text-muted">ไม่มีข้อมูล</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ booking.selected_course }}</td>
+                        <td>
+                            {% if booking.payment_slip %}
+                                <a href="{{ booking.payment_slip.url }}" target="_blank">
+                                    <img src="{{ booking.payment_slip.url }}" alt="สลิป" class="slip-image">
+                                </a>
+                            {% else %}
+                                <span class="text-muted">ไม่มีสลิป</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="status {{ booking.booking_status }}">{{ booking.get_booking_status_display }}</span>
+                        </td>
+                        <td>
+                            <form method="POST" action="{% url 'update_booking_status' booking.id 'confirmed' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-confirm">จองสำเร็จ</button>
+                            </form>
+                            
+                            <form method="POST" action="{% url 'update_booking_status' booking.id 'rejected' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-reject">จองไม่สำเร็จ</button>
+                            </form>
+                        </td>
+                        
+                        <td>{{ booking.booking_date }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="13" class="text-center">❌ ไม่มีข้อมูลการจอง</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- ✅ แสดง Pagination -->
+            <div class="pagination">
+                {% if bookings.has_previous %}
+                    <a href="?page=1&search={{ request.GET.search }}">&laquo; หน้าแรก</a>
+                    <a href="?page={{ bookings.previous_page_number }}&search={{ request.GET.search }}">⬅️ ก่อนหน้า</a>
+                {% endif %}
+
+                <span class="current-page">หน้า {{ bookings.number }} จาก {{ bookings.paginator.num_pages }}</span>
+
+                {% if bookings.has_next %}
+                    <a href="?page={{ bookings.next_page_number }}&search={{ request.GET.search }}">ถัดไป ➡️</a>
+                    <a href="?page={{ bookings.paginator.num_pages }}&search={{ request.GET.search }}">หน้าสุดท้าย &raquo;</a>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+    {% endblock %}

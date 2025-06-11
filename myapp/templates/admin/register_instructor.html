@@ -1,0 +1,158 @@
+{% extends 'admin/base_admin.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin/register_instructor.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+{% block title %}ลงทะเบียนผู้สอน{% endblock %}
+
+{% block content %}
+<div class="register-container">
+    <h1>ลงทะเบียนผู้สอน</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- ✅ Upload Profile Picture -->
+        <div class="profile-upload">
+            <img id="profilePreview" src="{% static 'images/default-profile.png' %}" alt="โปรไฟล์" class="profile-preview">
+            <label for="profilePicture" class="upload-label">
+                <i class="fas fa-upload"></i> อัปโหลดรูปภาพ
+            </label>
+            <input type="file" id="profilePicture" name="profile_picture" class="input-file" accept="image/*" required>
+        </div>
+
+        <!-- ✅ Input Fields -->
+        <div class="input-group">
+            <label>ชื่อผู้ใช้ (Username):</label>
+            <div class="input-container">
+                <input type="text" name="username" required>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>ชื่อ:</label>
+            <div class="input-container">
+                <input type="text" name="first_name" required>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>นามสกุล:</label>
+            <div class="input-container">
+                <input type="text" name="last_name" required>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>อีเมล:</label>
+            <div class="input-container">
+                <input type="email" name="email" required>
+                <i class="fas fa-envelope"></i>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>เบอร์โทร:</label>
+            <div class="input-container">
+                <input type="text" name="phone" required>
+                <i class="fas fa-phone"></i>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>อายุ:</label>
+            <div class="input-container">
+                <input type="number" name="age" required>
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>วิชาที่สอน:</label>
+            <div class="input-container">
+                <input type="text" name="subject" required>
+                <i class="fas fa-book"></i>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>รหัสผ่าน:</label>
+            <div class="input-container">
+                <input type="password" name="password" id="password" required>
+           
+                <i class="fas fa-eye toggle-password" onclick="togglePassword('password', this)"></i>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <label>ยืนยันรหัสผ่าน:</label>
+            <div class="input-container">
+                <input type="password" name="password2" id="password2" required>
+                
+                <i class="fas fa-eye toggle-password" onclick="togglePassword('password2', this)"></i>
+            </div>
+        </div>
+
+        {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+        
+
+        <!-- ✅ Register Button -->
+        <button type="submit" class="btn-register">ลงทะเบียน</button>
+    </form>
+
+    <script>
+        document.getElementById('profilePicture').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePreview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+            // พรีวิวโปรไฟล์
+    document.getElementById('profilePicture').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profilePreview').src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // ฟังก์ชันเปิด/ปิดรหัสผ่าน
+    function togglePassword(inputId, icon) {
+        const input = document.getElementById(inputId);
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
+    </script>
+</div>
+{% endblock %}

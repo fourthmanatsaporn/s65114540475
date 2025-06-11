@@ -1,0 +1,14 @@
+<div class="summary-container">
+    <h1>สรุปข้อมูลคอร์สเรียน</h1>
+    <h3>ชื่อคอร์ส: {{ course.title }}</h3>
+    <p>{{ course.description }}</p>
+    <h3>รายละเอียดเพิ่มเติม:</h3>
+    <p>{{ course_details.additional_description }}</p>
+    <div class="form-buttons">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-submit">ส่งคอร์สให้แอดมินตรวจสอบ</button>
+        </form>
+        <a href="{% url 'add_course_details' course.id %}" class="btn-cancel">กลับไปแก้ไข</a>
+    </div>
+</div>

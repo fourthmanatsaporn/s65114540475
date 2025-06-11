@@ -1,0 +1,111 @@
+{% extends 'admin/base_admin.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin/banners_admin.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+{% block title %}ตรวจสอบโฆษณาที่รออนุมัติ{% endblock %}
+
+{% block content %}
+<body class="body-wrapper">
+    <div class="admin-container1">
+        <h1 class="admin-title">📢 ตรวจสอบโฆษณาที่รออนุมัติ</h1>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>รูป</th>
+                    <th>วันที่สร้าง</th>
+                    <th>การจัดการ</th>
+                </tr>
+            </thead>
+            <tbody id="bannerTableBody">
+                {% for banner in banners %}
+                <tr id="bannerRow{{ banner.id }}">
+                    <td><img src="{{ banner.image.url }}" alt="Banner" class="banner-preview"></td>
+                    <td>{{ banner.created_at|date:"d/m/Y H:i" }}</td>
+                    <td>
+                        <!-- ✅ ปุ่มอนุมัติ -->
+                        <form method="POST" action="{% url 'approve_banner' banner.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-approve">✅ อนุมัติ</button>
+                        </form>
+
+                        <!-- ✅ ปุ่มเปิดป๊อปอัพปฏิเสธ -->
+                        <button class="btn-reject" onclick="openRejectModal('{{ banner.id }}')">❌ ไม่อนุมัติ</button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr id="noBanners">
+                    <td colspan="3" class="text-center">ไม่มีเบนเนอร์ที่รออนุมัติ</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ✅ ป๊อปอัพสำหรับปฏิเสธ -->
+    <div id="rejectModal" class="modal">
+        <div class="modal-content">
+            <h2>เพิ่มข้อความเพื่อนำกลับไปแก้ไข</h2>
+            <form id="rejectForm">
+                {% csrf_token %}
+                <input type="hidden" name="banner_id" id="bannerId">
+                <textarea name="rejection_message" id="rejectionMessage" placeholder="กรุณาใส่ข้อความที่ต้องการให้แก้ไข" required></textarea>
+                <div class="modal-buttons">
+                    <button type="button" class="btn-submit" onclick="submitRejection()">ส่งกลับไปแก้ไข</button>
+                    <button type="button" class="btn-cancel" onclick="closeRejectModal()">ยกเลิก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openRejectModal(bannerId) {
+            document.getElementById("rejectModal").style.display = "block";
+            document.getElementById("bannerId").value = bannerId;
+        }
+
+        function closeRejectModal() {
+            document.getElementById("rejectModal").style.display = "none";
+        }
+
+        function submitRejection() {
+            const bannerId = document.getElementById("bannerId").value;
+            const rejectionMessage = document.getElementById("rejectionMessage").value;
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch(`/reject_banner/${bannerId}/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrfToken
+                },
+                body: JSON.stringify({ rejection_message: rejectionMessage })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // ✅ ซ่อนแถวของเบนเนอร์ที่ถูกปฏิเสธ
+                    const row = document.getElementById("bannerRow" + bannerId);
+                    row.remove();
+
+                    // ✅ ถ้าไม่มีเบนเนอร์เหลือให้แสดงข้อความ "ไม่มีเบนเนอร์ที่รออนุมัติ"
+                    if (document.querySelectorAll("tbody tr").length === 1) {
+                        document.getElementById("bannerTableBody").innerHTML =
+                            '<tr id="noBanners"><td colspan="3" class="text-center">ไม่มีเบนเนอร์ที่รออนุมัติ</td></tr>';
+                    }
+
+                    // ✅ ปิดป๊อปอัพ
+                    closeRejectModal();
+                } else {
+                    alert("เกิดข้อผิดพลาด! ไม่สามารถปฏิเสธโฆษณาได้");
+                }
+            });
+        }
+    </script>
+</body>
+{% endblock %}

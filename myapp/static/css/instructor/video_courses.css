@@ -1,0 +1,89 @@
+/* General Styles */
+.body-container {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2; /* สีพื้นหลัง */
+
+    display: flex;
+    justify-content: center; /* จัดให้อยู่กึ่งกลางแนวนอน */
+    align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    min-height: 100vh; /* ให้ความสูงเท่าหน้าจอ */
+}
+
+
+/* Wrapper for Centering Content */
+.content-wrapper {
+    display: flex;
+    justify-content: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+    align-items: flex-start; /* จัดให้อยู่ชิดด้านบนของพื้นที่ */
+    width: 100%;
+    max-width: 1200px;
+    padding: 10px; /* ลด padding ของ content-wrapper */
+}
+
+/* Container */
+.video-course-container {
+    width: 100%;
+    max-width: 1000px;
+    margin-left: 340px; /* เพิ่มระยะห่างด้านซ้าย */
+    padding: 90px;
+    background-color: #fdfdfd; /* สีพื้นหลัง */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+
+}
+
+.title-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.delete-btn{
+    font-family: "Mali", serif;
+
+    background-color: #ff0707;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.add-btn {
+    background-color: #ffc107;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 700px;
+}
+
+.table-section {
+    margin-top: 20px;
+}
+
+.course-table table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.course-table th, .course-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.course-table th {
+    background-color: #f8f9fa;
+}
+
+.btn-edit {
+    background-color: #ff9800;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.text-center {
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+}

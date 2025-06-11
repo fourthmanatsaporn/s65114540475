@@ -1,0 +1,186 @@
+/* ✅ ตั้งค่าพื้นฐานของฟอร์ม */
+.register-container {
+    font-family: "Mali", serif;
+    width: 45%;
+    margin: 100px auto;
+    padding: 25px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    text-align: left;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF7D0C;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ✅ จัด label และ input แยกบรรทัด */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* ✅ Label (หัวข้อช่องกรอก) */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* ✅ ช่องกรอกข้อมูล */
+.input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+/* ✅ ปรับขนาดช่องกรอก */
+input[type="text"], 
+input[type="email"], 
+input[type="number"], 
+input[type="password"], 
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    padding-right: 50px; /* ✅ เว้นที่ให้ไอคอน */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
+    background-color: #fafafa;
+}
+
+/* ✅ ไอคอนอยู่ด้านขวาของช่องกรอก */
+.input-container i {
+    position: absolute;
+    right: 15px;
+    font-size: 18px;
+    color: #FF7D0C;
+}
+
+/* ✅ เอฟเฟกต์เมื่อคลิกช่องกรอก */
+input:focus {
+    border-color: #FF7D0C;
+    box-shadow: 0 0 5px rgba(255, 125, 12, 0.3);
+    background-color: #fff;
+}
+
+/* ✅ ปุ่มลงทะเบียน */
+.btn-register {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #FF7D0C, #FF3C00);
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s ease-in-out;
+}
+
+/* ✅ เอฟเฟกต์ hover */
+.btn-register:hover {
+    background: linear-gradient(45deg, #FF3C00, #FF7D0C);
+    transform: scale(1.05);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ Responsive */
+@media (max-width: 1024px) {
+    .register-container {
+        width: 60%;
+    }
+}
+
+@media (max-width: 768px) {
+    .register-container {
+        width: 90%;
+    }
+
+    input, .btn-register {
+        width: 100%;
+    }
+}
+/* ✅ กรอบอัปโหลดรูป */
+.profile-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* ✅ กรอบแสดงรูปโปรไฟล์ */
+.profile-preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #FF7D0C;
+    object-fit: cover;
+    margin-bottom: 10px;
+    background-color: #f4f4f4;
+}
+
+/* ✅ ปรับแต่งปุ่มอัปโหลด */
+.input-file {
+    display: none;
+}
+
+.upload-label {
+    background: linear-gradient(45deg, #FF7D0C, #FF3C00);
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    text-align: center;
+}
+
+/* ✅ เอฟเฟกต์ hover */
+.upload-label:hover {
+    background: linear-gradient(45deg, #FF3C00, #FF7D0C);
+    transform: scale(1.05);
+}
+
+/* ✅ ไอคอนแสดงบนปุ่มอัปโหลด */
+.upload-label i {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+
+.messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 6px solid #f44336;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 6px solid #28a745;
+}

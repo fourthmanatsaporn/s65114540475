@@ -1,0 +1,58 @@
+{% extends 'instructor/base_instructor.html' %}
+{% load static %}
+
+{% block title %}เพิ่มสไลด์เบนเนอร์{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/instructor/add_banner.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+<div class="body-container">
+    <div class="add-banner-container">
+        <h1 class="header-title">🖼️ เพิ่มสไลด์เบนเนอร์</h1>
+        <p class="sub-header">อัปโหลดรูปภาพเพื่อแสดงในเบนเนอร์ (ขนาดแนะนำ: 1200x400 px)</p>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- ✅ ส่วนแสดงตัวอย่างภาพ -->
+            <div class="banner-preview">
+                <label for="banner_image" class="upload-label">
+                    <img src="{% static 'images/upload_placeholder.png' %}" alt="Preview" class="preview-image" id="preview">
+                    <p class="upload-text">📷 คลิกเพื่อเลือกไฟล์</p>
+                </label>
+                <input type="file" id="banner_image" name="banner_image" accept="image/*" required onchange="previewFile()">
+            </div>
+
+            <!-- ✅ ปุ่มเพิ่ม & ยกเลิก -->
+            <div class="form-buttons">
+                <button type="submit" class="btn-submit">✅ เพิ่มเบนเนอร์</button>
+                <a href="{% url 'banners' %}" class="btn-cancel">❌ ยกเลิก</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function previewFile() {
+    const preview = document.getElementById('preview');
+    const file = document.getElementById('banner_image').files[0];
+    const reader = new FileReader();
+
+    if (!file) {
+        alert("⚠ กรุณาเลือกไฟล์ก่อนทำการอัปโหลด!");
+        return;
+    }
+
+    reader.onload = function (e) {
+        preview.src = e.target.result; // ✅ แสดงตัวอย่างภาพที่อัปโหลด
+    };
+    reader.readAsDataURL(file);
+}
+</script>
+{% endblock %}

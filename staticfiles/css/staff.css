@@ -1,0 +1,75 @@
+/* General Styles */
+/* Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Mali", serif;/* เปลี่ยนฟอนต์หลักของหน้าเว็บ */
+    background-color: #FFF7F2;
+    color: #333;
+}
+
+/* Header */
+header {
+    padding-bottom: 20px; 
+    z-index: 10;
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Container */
+.staff-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Page Title */
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #FF5733;
+    margin-bottom: 30px;
+}
+
+/* Staff Grid */
+.staff-grid {
+    display: grid;
+
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Staff Card */
+.staff-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.staff-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Staff Icon */
+.staff-icon img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #FF5733;
+    padding: 5px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* Staff Description */
+.staff-card p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+    line-height: 1.4;
+}

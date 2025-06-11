@@ -1,0 +1,73 @@
+{% extends 'instructor/base_instructor.html' %}
+{% load static %}
+{% block title %}แก้ไขรายละเอียดคอร์สเรียน{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/instructor/add_course_details.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+<div class="body-container">
+    <div class="add-course-details-container">
+        <div class="form-header">
+            <h1>แก้ไขรายละเอียดคอร์สเรียน</h1>
+        </div>
+        <form method="post" enctype="multipart/form-data" action="{% url 'edit_course_details' course.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">ชื่อ *</label>
+                <input type="text" id="name" name="name" value="{{ course_details.name }}" required>    
+            </div>
+            <div class="form-group">
+                <label for="description">คำอธิบาย *</label>
+                <textarea id="description" name="description" rows="4"
+                    required>{{ course_details.description }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="additional_description">คำอธิบายเพิ่มเติม *</label>
+                <textarea id="additional_description" name="additional_description" rows="4"
+                    required>{{ course_details.additional_description }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="image">รูปภาพ *</label>
+                <input type="file" id="image" name="image" accept="image/*">
+                {% if course_details.image %}
+                <img src="{{ course_details.image.url }}" alt="รูปภาพคอร์ส" style="width: 150px; margin-top: 10px;">
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="additional_image">รูปภาพเพิ่มเติม *</label>
+                <input type="file" id="additional_image" name="additional_image" accept="image/*">
+                {% if course_details.additional_image %}
+                <img src="{{ course_details.additional_image.url }}" alt="รูปภาพเพิ่มเติม"
+                    style="width: 150px; margin-top: 10px;">
+                {% endif %}
+            </div>
+            <!-- ฟิลด์สำหรับแสดงและแก้ไข extra_image_1 -->
+            <div class="form-group">
+                <label for="extra_image_1">รูปภาพเพิ่มเติม 1</label>
+                <input type="file" id="extra_image_1" name="extra_image_1" accept="image/*">
+                {% if course_details.extra_image_1 %}
+                <img src="{{ course_details.extra_image_1.url }}" alt="รูปภาพเพิ่มเติม 1"
+                    style="width: 150px; margin-top: 10px;">
+                {% endif %}
+            </div>
+            <!-- ฟิลด์สำหรับแสดงและแก้ไข extra_image_2 -->
+            <div class="form-group">
+                <label for="extra_image_2">รูปภาพเพิ่มเติม 2</label>
+                <input type="file" id="extra_image_2" name="extra_image_2" accept="image/*">
+                {% if course_details.extra_image_2 %}
+                <img src="{{ course_details.extra_image_2.url }}" alt="รูปภาพเพิ่มเติม 2"
+                    style="width: 150px; margin-top: 10px;">
+                {% endif %}
+            </div>
+            <div class="form-buttons">
+                <a href="{% url 'edit_course' course.id %}" class="btn-cancel">กลับไปยังหน้าหลัก</a>
+                <button type="submit" class="btn-submit">บันทึกการแก้ไขและส่งไปตรวจสอบ</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

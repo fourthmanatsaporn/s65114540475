@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คอร์สเรียนทั้งหมด</title>
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all_courses.css' %}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    {% endblock %}
+</head>
+
+<body>
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+
+    <div class="tab-buttons">
+        <a href="{% url 'all_courses' %}" class="tab-btn active">คอร์สเรียนทั้งหมด</a>
+        <a href="{% url 'my_courses' %}" class="tab-btn">คอร์สเรียนของฉัน</a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="courses-page">
+        <div class="container">
+            <h1 class="page-title">คอร์สเรียนทั้งหมด</h1>
+
+            <!-- ✅ คอร์สเรียนออนไซต์ -->
+            <div class="two-columns">
+                <!-- 🔸 คอร์สเรียนออนไซต์ -->
+                <div class="column">
+                    <h2 class="section-title">คอร์สเรียนออนไซต์</h2>
+                    <hr class="section-divider">
+                    <div class="courses-grid">
+                        {% for course in courses %}
+                        {% if not course.is_closed %}
+                        <div class="course-item">
+                            <div class="course-thumbnail">
+                                <img src="{{ course.image.url }}" alt="{{ course.title }}">
+                            </div>
+                            <div class="course-info">
+                                <h3>{{ course.title }}</h3>
+                                <p>{{ course.description }}</p>
+                                <p class="instructor">ผู้สอน: {{ course.instructor }}</p>
+                                <p class="price">{{ course.price }} ฿</p>
+                                <div class="course-buttons">
+                                    <a href="{% url 'booking_course' course.id %}" class="btn blue">จองคอร์ส</a>
+                                    <a href="{% url 'course_details' course.id %}"
+                                        class="btn orange">ดูรายละเอียดเพิ่มเติม</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% empty %}
+                        <p>ไม่มีคอร์สออนไซต์ที่พร้อมใช้งาน</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+
+                <!-- 🔸 คอร์สเรียนวิดีโอ -->
+                <div class="column">
+                    <h2 class="section-title">คอร์สเรียนแบบวิดีโอ</h2>
+                    <hr class="section-divider">
+                    <div class="courses-grid">
+                        {% for course in video_courses %}
+                        <div class="course-item">
+                            <div class="course-thumbnail">
+                                <img src="{{ course.image.url }}" alt="{{ course.title }}">
+                            </div>
+                            <div class="course-info">
+                                <h3>{{ course.title }}</h3>
+                                <p>{{ course.description }}</p>
+                                <p class="instructor">ผู้สอน: {{ course.instructor }}</p>
+                                <p class="price">{{ course.price }} ฿</p>
+                                <div class="course-buttons">
+                                    {% if course.id in purchased_video_course_ids %}
+                                    {% for order in purchased_video_courses %}
+                                        {% if order.course_id == course.id %}
+                                            {% if order.payment_status == "confirmed" %}
+                                                <a href="{% url 'video_lesson_view' course.id %}" class="btn-watch-video">ดูวิดีโอ</a>
+                                            {% elif order.payment_status == "pending" %}
+                                                <button class="btn-pending" disabled>รอการตรวจสอบ</button>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <a href="{% url 'purchase_video_course' course.id %}"
+                                        class="btn green">ซื้อคอร์ส</a>
+                                {% endif %}
+                                    <a href="{% url 'video_course_details_user' course.id %}"
+                                        class="btn orange">ดูรายละเอียดเพิ่มเติม</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p>ไม่มีคอร์สวิดีโอที่พร้อมใช้งาน</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

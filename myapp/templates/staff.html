@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บุคลากร</title>
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/staff.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    {% if request.user.is_authenticated %}
+    {% include 'navbar.html' %}
+    {% else %}
+    {% include 'navbar_guest.html' %}
+    {% endif %}
+
+    <!-- Main Content -->
+    <main class="staff-container">
+        <h1 class="page-title">บุคลากร</h1>
+        <div class="staff-grid">
+            {% for instructor in instructors %}
+            <div class="staff-card">
+                <div class="staff-icon">
+                    {% if instructor.profile_picture %}
+                    <img src="{{ instructor.profile_picture.url }}"
+                        alt="{{ instructor.user.first_name }} {{ instructor.user.last_name }}">
+                    {% else %}
+                    <img src="{% static 'images/default-profile.png' %}" alt="Default Profile">
+                    {% endif %}
+                </div>
+                <p><strong>วิชาที่สอน: {{ instructor.subject }}</strong></p>
+                <p>ชื่อผู้สอน: {{ instructor.user.first_name }} {{ instructor.user.last_name }}</p>
+                <p>อายุ: {{ instructor.age }}</p>
+            </div>
+            {% empty %}
+            <p style="text-align: center; color: red;">ไม่มีข้อมูลผู้สอน</p>
+            {% endfor %}
+
+
+        </div>
+    </main>
+
+</body>
+
+</html>

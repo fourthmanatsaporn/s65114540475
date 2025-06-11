@@ -1,0 +1,110 @@
+/* ตั้งค่าพื้นฐานสำหรับหน้า */
+.body-wrapper {
+    font-family: "Mali", serif;
+    margin: 0; /* ลบระยะขอบรอบด้าน */
+    padding: 0; /* ลบระยะ padding รอบด้าน */
+    font-family: 'Arial', sans-serif; /* ตั้งฟอนต์มาตรฐาน */
+    font-size: 16px; /* ขนาดตัวอักษรพื้นฐาน */
+    color: #333; /* สีข้อความพื้นฐาน */
+    background-color: #FFF7F2; /* สีพื้นหลัง */
+    line-height: 1.6; /* ความสูงของบรรทัดให้ดูอ่านง่าย */
+}
+
+
+/* สไตล์ของคอนเทนเนอร์หลัก */
+.dashboard-container {
+    font-family: "Mali", serif;
+    padding: 10px;
+    background-color: #ffffff;
+    min-height: 50vh; /* ให้เนื้อหาเต็มหน้าจอแนวตั้ง */
+    width: 50%; /* ปรับความกว้างให้เหมาะสม */
+/* จัดให้อยู่ตรงกลาง */
+    border-radius: 10px; /* เพิ่มขอบมน */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเพื่อความสวยงาม */
+    margin-left: 400px;
+    margin-top: 130px; /* เพิ่มระยะห่างจากขอบด้านบน */
+}
+
+
+/* หัวข้อ */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+/* กรอบฟอร์ม */
+.form-group {
+    text-align: left;
+    margin-bottom: 12px; /* ลดระยะห่างระหว่างฟิลด์ */
+}
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 16px;
+}
+
+.form-group input {
+    width: 100%;
+    max-width: 600px; /* ลดความกว้างสูงสุดของช่องกรอก */
+    padding: 8px; /* ลด padding */
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-group input:focus {
+    border-color: #8ec5fc;
+    box-shadow: 0px 0px 8px rgba(142, 197, 252, 0.6);
+}
+
+/* ปรับขนาด input file */
+input[type="file"] {
+    border: none;
+    padding: 5px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* ปรับขนาดปุ่ม */
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.btn-save, .btn-cancel {
+    width: 48%; /* ทำให้ปุ่มมีขนาดพอเหมาะ */
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-save {
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background: #218838;
+}
+
+.btn-cancel {
+    background: #dc3545;
+    color: white;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background: #c82333;
+}

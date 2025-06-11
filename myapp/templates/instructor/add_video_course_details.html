@@ -1,0 +1,48 @@
+{% extends 'instructor/base_instructor.html' %}
+{% load static %}
+{% block title %}เพิ่มรายละเอียดคอร์สเรียนแบบวิดีโอ{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/instructor/add_video_course_details.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="body-container">
+    <div class="add-course-details-container">
+        <div class="form-header">
+            <h1>เพิ่มรายละเอียดคอร์สเรียนแบบวิดีโอ</h1>
+        </div>
+        <form method="post" enctype="multipart/form-data" action="{% url 'add_video_course_details' course.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">ชื่อ *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="description">คำอธิบาย *</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="additional_description">คำอธิบายเพิ่มเติม *</label>
+                <textarea id="additional_description" name="additional_description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="image">รูปภาพตารางเรียน *</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="additional_image">รูปภาพเพิ่มเติม *</label>
+                <input type="file" id="additional_image" name="additional_image" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="preview_video">วิดีโอตัวอย่าง *</label>
+                <input type="file" id="preview_video" name="preview_video" accept="video/*" required>
+            </div>
+            <div class="form-buttons">
+                <a href="{% url 'add_video_course' %}" class="btn-cancel">กลับไปแก้ไขหน้าเพิ่มคอร์ส</a>
+                <button type="submit" class="btn-submit">บันทึกและส่งคอร์สเรียน</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

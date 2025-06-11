@@ -1,0 +1,32 @@
+{% extends 'instructor/base_instructor.html' %}
+{% load static %}
+{% block title %}แก้ไขคอร์สเรียนแบบวิดีโอ{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/instructor/edit_video_course.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="body-container">
+<div class="edit-container">
+    <h1 class="page-title">แก้ไขคอร์สเรียนแบบวิดีโอ</h1>
+    <form method="post" enctype="multipart/form-data" class="edit-form">
+        {% csrf_token %}
+        <label>ชื่อคอร์ส</label>
+        <input type="text" name="title" value="{{ course.title }}" required>
+
+        <label>คำอธิบาย</label>
+        <textarea name="description" required>{{ course.description }}</textarea>
+
+        <label>ราคา</label>
+        <input type="number" name="price" value="{{ course.price }}" required>
+
+        <label>รูปภาพ</label>
+        <input type="file" name="image">
+        <img src="{{ course.image.url }}" width="100px" class="preview-img">
+
+        <button type="submit" class="btn-save">บันทึกและไปหน้าถัดไป</button>
+    </form>
+</div>
+</div>
+{% endblock %}

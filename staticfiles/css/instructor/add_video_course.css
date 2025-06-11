@@ -1,0 +1,127 @@
+.body-container {
+    background-color: #FFF7F2;
+    display: flex;; /* ปรับจาก center เป็น flex-start เพื่อให้อยู่ชิดซ้าย */
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px 50px; /* เพิ่ม padding ซ้ายขวา */
+    font-family: 'Arial', sans-serif;
+}
+
+.add-course-container {
+    margin-left: auto; /* ทำให้คอนเทนต์ขยับไปทางขวา */
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.add-course-container:hover {
+    transform: scale(1.02);
+}
+
+/* Header */
+.form-header h1 {
+    font-size: 2rem; /* เพิ่มขนาดของหัวข้อ */
+    text-align: center;
+    color: #663399;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555; /* สีอ่อนลงเพื่อให้ดูนุ่มนวล */
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px; /* เพิ่ม padding */
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* เพิ่มความมน */
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* เพิ่มเอฟเฟกต์ */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #663399;
+    box-shadow: 0 0 6px rgba(102, 51, 153, 0.5);
+}
+
+/* Buttons */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.btn-add-video,
+.btn-add-details,
+.btn-submit,
+.btn-cancel {
+    flex: 1 1 auto;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out; /* เพิ่มเอฟเฟกต์ */
+}
+
+/* Specific Buttons */
+.btn-add-video {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-add-details {
+    background-color: #fd7e14;
+    color: white;
+}
+
+.btn-submit {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-cancel {
+    background-color: #dc3545;
+    color: white;
+    text-decoration: none;
+}
+
+/* Hover Effects */
+.btn-add-video:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.btn-add-details:hover {
+    background-color: #e8590c;
+    transform: scale(1.05);
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.btn-cancel:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}

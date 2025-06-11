@@ -1,0 +1,171 @@
+body {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    font-family: "Mali", serif;
+
+    padding-bottom: 20px; 
+    z-index: 10;
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container1 {
+    font-family: "Mali", serif;
+
+    max-width: 1200px;
+    margin: 0 auto;
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #FFF7F2;
+}
+.page-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 80px;
+    color: #613E74;
+}
+
+.course-title {
+    color: #FF7D0C;
+}
+/* ✅ สไตล์ของการ์ดแต่ละการจอง */
+.booking-card {
+    background: #fff;
+    border-radius: 20px;
+    width: 100%; /* ✅ ใช้เปอร์เซ็นต์เพื่อให้ responsive */
+    max-width: 900px;
+ /* ✅ จำกัดขนาดสูงสุด */
+    padding: 30px; /* ✅ ลด padding เพื่อให้ขนาดกระชับ */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    margin-left: auto; /* ✅ จัดให้ card อยู่กึ่งกลาง */
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.booking-header {
+    border-bottom: 2px solid #EEE;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #FF6B6B;
+}
+
+.info {
+    font-weight: 500;
+    color: #333;
+}
+
+/* ✅ จัดเลย์เอาต์ให้เป็น 2 คอลัมน์ */
+.booking-body {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.left-section, .right-section {
+    flex: 1;
+}
+
+h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #FF7D0C;
+}
+
+p {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+/* ✅ ปรับแต่งสถานะ */
+.status {
+    font-weight: bold;
+    padding: 5px 12px;  /* ปรับ padding ให้ข้อความมีพื้นที่ */
+    border-radius: 5px;
+    display: inline-block;  /* ทำให้กล่องขนาดพอดีกับข้อความ */
+    white-space: nowrap; /* ป้องกันข้อความตกบรรทัด */
+}
+
+.status.pending {
+    background-color: #FFD700;
+    color: #333;
+}
+
+.status.approved {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.status.rejected {
+    background-color: #FF4C4C;
+    color: white;
+}
+
+/* ✅ สลิปการโอน */
+.payment-slip {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.slip-image {
+    width: 280px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ ข้อความเมื่อไม่มีข้อมูล */
+.no-slip, .no-booking {
+    font-size: 14px;
+    color: #FF6B6B;
+    font-weight: bold;
+}
+
+/* ✅ ปรับแต่งสถานะการจองให้แสดงสีที่ชัดเจน */
+.status {
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 8px;
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+/* ✅ สีสถานะ "รอการยืนยัน" */
+.status1.pending {
+    background-color: #FFD700; /* สีเหลือง */
+    color: #333;
+    border: 1px solid #DAA520;
+}
+
+/* ✅ สีสถานะ "ยืนยันแล้ว" */
+.status1.confirmed {
+    background-color: #4CAF50; /* สีเขียว */
+    color: white;
+    border: 1px solid #388E3C;
+}
+
+/* ✅ สีสถานะ "ยกเลิก" */
+.status1.canceled {
+    background-color: #F44336; /* สีแดง */
+    color: white;
+    border: 1px solid #D32F2F;
+}

@@ -1,0 +1,217 @@
+
+body {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    padding-bottom: 20px; 
+    z-index: 10;
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.courses-page .container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    flex-direction: column;
+}
+
+/* Page Title */
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #FF5733;
+    margin-bottom: 20px;
+}
+
+
+/* Course Item */
+.course-item {
+    display: flex;
+    gap: 100px;
+    background: #ffffff; /* พื้นหลังสีขาว */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    border: 0.5px solid #3498db;
+
+}
+
+.course-item:hover {
+    transform: translateY(-5px);
+}
+
+.course-thumbnail img {
+    width: 200px; /* ขยายภาพ */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.course-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.course-info h3 {
+    font-size: 1.5rem;
+    color: #0C86B8;
+    margin-bottom: 10px;
+}
+
+.course-info p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.course-buttons {
+    display: flex;
+    flex-direction: column; /* จัดเรียงปุ่มในแนวตั้ง */
+    gap: 10px; /* ระยะห่างระหว่างปุ่ม */
+    
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* ปรับให้ปุ่มเต็มความกว้างในกรณีแนวตั้ง */
+    max-width: 250px; /* จำกัดความกว้างสูงสุดของปุ่ม */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.btn.green{
+    background-color: #9261ad;
+    border-radius: 10px;
+}
+.btn.blue {
+    background-color: #3498db;
+    border-radius: 10px;
+    
+}
+
+.btn.blue:hover {
+    background-color: #2874a6;
+}
+
+.btn.orange {
+    background-color: #e67e22;
+    border-radius: 10px;
+}
+
+.btn.orange:hover {
+    background-color: #d35400;
+}
+
+
+
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 100px;
+
+}
+.tab-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    background-color: #ccc;
+    margin: 0 10px;
+}
+
+.tab-btn.active {
+    background-color: #FF7D0C;
+
+}
+
+.tab-btn:hover {
+    background-color: #18A9E4;
+}
+
+/* ✅ แสดง 2 ช่อง (คอลัมน์) ขนานกัน */
+.two-columns {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+/* ✅ คอลัมน์แต่ละฝั่ง */
+.column {
+    flex: 1 1 48%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+/* ✅ คอร์สเรียงต่อกันในแต่ละฝั่ง */
+.column .courses-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+
+/* ปุ่มดูวิดีโอ */
+.btn-watch-video {
+    background-color: #4CAF50; /* สีเขียวเข้ม */
+    border-radius: 10px;
+    background-color: #4CAF50; /* สีเขียวเข้ม */
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* ปรับให้ปุ่มเต็มความกว้างในกรณีแนวตั้ง */
+    max-width: 250px; /* จำกัดความกว้างสูงสุดของปุ่ม */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-watch-video:hover {
+    background-color: #45a049; /* สีเขียวอ่อนเมื่อ hover */
+    transform: scale(1.02); /* ขยายเล็กน้อยเมื่อ hover */
+}
+
+/* ปุ่มรอการตรวจสอบ */
+.btn-pending {
+    display: inline-block;
+    padding: 13px 100px;
+    background-color: #FFA500; /* สีส้ม */
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    text-align: center;
+    cursor: not-allowed; /* ตัวชี้เมาส์เป็นห้ามคลิก */
+    opacity: 0.7;
+}
+
+.btn-pending:hover {
+    background-color: #FFB347; /* สีส้มอ่อนเมื่อ hover */
+}

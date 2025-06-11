@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my_courses.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<body>
+
+    <div class="tab-buttons">
+        <a href="{% url 'all_courses' %}" class="tab-btn">คอร์สเรียนทั้งหมด</a>
+        <a href="{% url 'my_courses' %}" class="tab-btn active">คอร์สเรียนของฉัน</a>
+    </div>
+    <h1 class="page-title">คอร์สเรียนของฉัน</h1>
+    <div class="container1">
+
+
+        <div class="two-columns">
+            <!-- ✅ ฝั่งซ้าย: คอร์สแบบจอง -->
+            <div class="column">
+                <div class="slider-wrapper">
+                    
+                <h2><i class="fas fa-calendar-check"></i> คอร์สที่ฉันจอง</h2>
+                <div class="courses-grid">
+                    
+                    {% for booking in bookings %}
+                    
+                        <div class="course-item">
+                            <div class="course-thumbnail">
+                                <img src="{{ booking.course.image.url }}" alt="{{ booking.course.name }}">
+                            </div>
+                            <div class="course-info">
+                                <h3>{{ booking.course.title }}</h3>
+                                <p>{{ booking.course.description }}</p>
+                                <p class="price">{{ booking.course.price }} ฿</p>
+                                <p><strong>สถานะ:</strong> 
+                                    {% if booking.booking_status == "pending" %}
+                                        <span style="color: orange;">รอดำเนินการ</span>
+                                    {% elif booking.booking_status == "confirmed" %}
+                                        <span style="color: green;">ยืนยันแล้ว</span>
+                                    {% elif booking.booking_status == "canceled" %}
+                                        <span style="color: red;">ยกเลิกแล้ว</span>
+                                    {% else %}
+                                        <span>ไม่ทราบสถานะ</span>
+                                    {% endif %}
+                                </p>
+                                
+                                <div class="course-buttons">
+                                    <a href="{% url 'booking_my_courses' booking.course.id %}" class="btn-orange">ข้อมูลการจองของฉัน</a>
+                                    {% if booking.booking_status == "pending" %}
+                                    <form method="POST" action="{% url 'cancel_booking' booking.id %}" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการจองนี้?');">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn-cancel">ยกเลิกการจอง</button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+            
+                    {% empty %}
+                    <p>คุณยังไม่ได้จองคอร์สใด ๆ</p>
+                    {% endfor %}
+                    
+                </div>
+                
+            </div>
+            </div>
+
+        <!-- ✅ ฝั่งขวา: คอร์สวิดีโอ -->
+        <div class="column">
+            <div class="slider-wrapper">
+            <h2><i class="fas fa-video"></i> คอร์สที่ฉันซื้อ</h2>
+            <div class="courses-grid">
+                {% for order in purchased_video_courses %}
+
+                    <div class="course-item1">
+                        <div class="course-thumbnail">
+                            <img src="{{ order.course.image.url }}" alt="{{ order.course.title }}">
+                        </div>
+                        <div class="course-info">
+                            <h3>{{ order.course.title }}</h3>
+                            <p>{{ order.course.description }}</p>
+                            <p class="price">{{ order.course.price }} ฿</p>
+                            <p><strong>สถานะ:</strong> 
+                                {% if order.payment_status == "pending" %}
+                                    <span style="color: orange;">รอตรวจสอบ</span>
+                                {% elif order.payment_status == "confirmed" %}
+                                    <span style="color: green;">ชำระเงินสำเร็จ</span>
+                                {% elif order.payment_status == "rejected" %}
+                                    <span style="color: red;">ปฏิเสธการชำระเงิน</span>
+                                {% else %}
+                                    <span>ไม่ทราบสถานะ</span>
+                                {% endif %}
+                            </p>
+                            
+                            <div class="course-buttons">
+                                {% if order.payment_status == "pending" %}
+                                    <button class="btn-orange1">รอการตรวจสอบ</button>
+                                {% elif order.payment_status == "confirmed" %}
+                                    <a href="{% url 'video_lesson_view' order.course.id %}" class="btn-orange">ดูวิดีโอการสอน</a>
+                                {% else %}
+                                    <span class="text-muted1">สถานะ: ปฏิเสธการชำระเงิน</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                {% empty %}
+                <p>คุณยังไม่ได้ซื้อคอร์สวิดีโอใด ๆ</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    </div>
+</body>
+{% endblock %}

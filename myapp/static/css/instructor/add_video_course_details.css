@@ -1,0 +1,103 @@
+/* General Styles */
+.body-container {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container */
+.add-course-details-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+/* Header */
+.form-header h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    color: #663399;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #663399;
+    box-shadow: 0 0 5px rgba(102, 51, 153, 0.5);
+}
+
+/* Buttons */
+.form-buttons {
+    display: flex;
+    justify-content: space-between; /* กระจายปุ่มให้อยู่คนละด้าน */
+    margin-top: 20px; /* ระยะห่างด้านบน */
+}
+
+.btn-cancel {
+    background-color: #ff4d4d; /* สีแดงสำหรับปุ่มยกเลิก */
+    color: white; /* สีตัวอักษร */
+    padding: 10px 20px; /* ระยะ Padding */
+    border: none; /* ไม่มีขอบ */
+    border-radius: 5px; /* ขอบโค้ง */
+    font-size: 14px; /* ขนาดตัวอักษร */
+    cursor: pointer; /* เปลี่ยนเมาส์เป็นมือชี้ */
+    transition: all 0.3s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนแปลง */
+    text-decoration: none; /* เอาเส้นใต้ของลิงก์ออก */
+    font-weight: bold; /* เพิ่มความหนาของข้อความ */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+}
+
+.btn-cancel:hover {
+    background-color: #e63939; /* สีแดงเข้มเมื่อ hover */
+    transform: scale(1.05); /* ขยายเล็กน้อยเมื่อ hover */
+}
+
+.btn-submit {
+    background-color: #28a745; /* สีเขียวสำหรับปุ่มบันทึก */
+    color: white; /* สีตัวอักษร */
+    padding: 10px 20px; /* ระยะ Padding */
+    border: none; /* ไม่มีขอบ */
+    border-radius: 5px; /* ขอบโค้ง */
+    font-size: 14px; /* ขนาดตัวอักษร */
+    cursor: pointer; /* เปลี่ยนเมาส์เป็นมือชี้ */
+    transition: all 0.3s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนแปลง */
+    font-weight: bold; /* เพิ่มความหนาของข้อความ */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+}
+
+.btn-submit:hover {
+    background-color: #218838; /* สีเขียวเข้มเมื่อ hover */
+    transform: scale(1.05); /* ขยายเล็กน้อยเมื่อ hover */
+}
+

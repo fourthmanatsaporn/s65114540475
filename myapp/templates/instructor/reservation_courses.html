@@ -1,0 +1,248 @@
+{% extends 'instructor/base_instructor.html' %}
+{% load static %}
+{% block title %}คอร์สเรียนแบบจอง{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/instructor/reservation_courses.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+    /* ป๊อปอัป */
+    .popup-container {
+        font-family: "Mali", serif;
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .popup-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+    }
+
+    #popup-message {
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 16px;
+    }
+
+    .btn-close {
+        background-color: #0069d9;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .btn-close:hover {
+        background-color: #0056b3;
+    }
+
+    /* ปุ่ม */
+    .btn-view-revision {
+        background-color: #0069d9;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        margin-top: 10px; /* เพิ่มระยะห่างระหว่างปุ่มและข้อความ */
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-view-revision:hover {
+        background-color: #0056b3;
+        transform: scale(1.1);
+    }
+
+    /* ข้อความสถานะ */
+    .revision-status {
+        margin-bottom: 5px; /* เพิ่มระยะห่างด้านล่างข้อความ */
+        color: red;
+        font-weight: bold;
+    }
+    
+/* ปุ่มปิดรับสมัคร */
+.btn-close2 {
+    font-family: "Mali", serif;
+    margin-top: 10px;
+    background-color: #FF5733;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.btn-close2:hover {
+    background-color: #C70039;
+    transform: scale(1.05);
+}
+
+/* ปุ่มเปิดรับสมัคร */
+.btn-reopen {
+    margin-top: 10px;
+    font-family: "Mali", serif;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.btn-reopen:hover {
+    background-color: #388E3C;
+    transform: scale(1.05);
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<body class="body-container">
+    <div class="reservation-container">
+        <!-- Title Section -->
+        <div class="title-section">
+            <h1 class="page-title">คอร์สเรียนแบบจอง</h1>
+        </div>
+
+        <!-- Action Buttons Section -->
+        <form method="post" action="{% url 'delete_selected_courses' %}">
+            {% csrf_token %}
+            <div class="action-buttons-section">
+                <div class="action-buttons">
+                    <button type="submit" class="delete-btn">ลบที่เลือก</button>
+                    <a href="{% url 'add_course' %}" class="add-btn">เพิ่มคอร์สเรียน</a>
+                </div>
+            </div>
+
+            <!-- Table Section -->
+            <div class="table-section">
+                <div class="course-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>เลือกรายการ</th>
+                                <th>รูปภาพ</th>
+                                <th>ชื่อคอร์สเรียน</th>
+                                <th>ราคา</th>
+                                <th>ผู้สอน</th>
+                                <th>วันที่สร้าง</th>
+                                <th>สถานะ</th>
+                                <th>จัดการ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for course in courses %}
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="selected_courses" value="{{ course.id }}">
+                                </td>
+                                <td>
+                                    <img src="{{ course.image.url }}" alt="รูปภาพคอร์ส" style="width: 100px; height: auto;">
+                                </td>
+                                <td>{{ course.title }}</td>
+                                <td>{{ course.price }}</td>
+                                <td>{{ course.instructor }}</td>
+                                <td>{{ course.created_at|date:"d/m/Y H:i" }}</td>
+                                <td>
+                                    {% if course.status == 'pending' %}
+                                        <span style="color: orange;">รอการอนุมัติ</span>
+                                    {% elif course.status == 'approved' %}
+                                        <span style="color: green;">อนุมัติแล้ว</span>
+                                    {% elif course.status == 'revision' %}
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;">
+                                        <span style="color: red;">ส่งกลับมาแก้ไข</span>
+                                        <button type="button" class="btn-view-revision" 
+                                            onclick="showPopup('{{ course.revision_message|default_if_none:'ไม่มีข้อความที่ส่งกลับมาแก้ไข' }}')">
+                                            ดูข้อความ
+                                        </button>
+                                    </div>
+                                    
+                                    {% elif course.status == 'revised' %}
+                                        <span style="color: blue;">แก้ไขแล้วรอการตรวจสอบ</span>
+                                    {% else %}
+                                        <span style="color: gray;">สถานะไม่ทราบ</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'edit_course' course.id %}" class="btn-edit">แก้ไข</a>
+                                {% if course.status == 'approved' %}
+                                    {% if course.is_closed %}
+                                    <button class="btn-reopen" onclick="confirmReopen('{{ course.id }}')">เปิดรับสมัครอีกครั้ง</button>
+                                    {% else %}
+                                <button class="btn-close2" onclick="confirmClose('{{ course.id }}')">สิ้นสุดการรับสมัคร</button>
+                                    {% endif %}
+                                   
+                                   
+                                {% endif %}
+
+                                </td>
+                                
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="8" class="text-center">ไม่มีคอร์สเรียน</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Popup Section -->
+    <div id="popup" class="popup-container">
+        <div class="popup-content">
+            <p id="popup-message"></p>
+            <button class="btn-close" onclick="closePopup()">ปิด</button>
+        </div>
+    </div>
+
+    <script>
+function confirmClose(courseId) {
+    if (confirm("คุณต้องการสิ้นสุดการรับสมัครของคอร์สนี้หรือไม่?")) {
+        window.location.href = `/close-course/${courseId}/`;
+    }
+}
+
+
+    function confirmReopen(courseId) {
+        if (confirm("คุณต้องการเปิดรับสมัครของคอร์สนี้อีกครั้งหรือไม่?")) {
+            window.location.href = `/reopen-course/${courseId}/`;
+        }
+    }
+        function showPopup(message) {
+            const popup = document.getElementById('popup');
+            const popupMessage = document.getElementById('popup-message');
+            popupMessage.textContent = message || "ไม่มีข้อความที่ส่งกลับมาแก้ไข"; // ใส่ข้อความในป๊อปอัป
+            popup.style.display = 'flex'; // แสดงป๊อปอัป
+        }
+
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none'; // ซ่อนป๊อปอัป
+        }
+    </script>
+</body>
+{% endblock %}

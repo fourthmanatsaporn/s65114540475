@@ -1,0 +1,66 @@
+/* Sidebar */
+.sidebar {
+    width: 300px;
+    height: calc(100vh - 100px); /* ลดความสูงลงตาม Header */
+    background-color: #ffe6f2;
+    padding: 20px 15px; /* เพิ่ม padding สำหรับเนื้อหา */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 100px; /* ระยะห่างจากด้านบน */
+    left: 0;
+    z-index: 999; /* Sidebar ต่ำกว่า Header */
+    overflow-y: auto; /* เลื่อนในกรณีที่เนื้อหาเกิน */
+    border-right: 1px solid #ddd; /* เส้นแบ่งด้านขวา */
+    font-family: "Mali", serif;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* ลบระยะห่างของ ul */
+    margin-top: 20px; /* เพิ่มระยะด้านบน */
+}
+
+.nav-links li {
+    margin-bottom: 15px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    padding: 10px 15px; /* เพิ่ม padding */
+    border-radius: 5px;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links li.active a,
+.nav-links li a:hover {
+    background-color: #ffb6c1;
+    color: #ff5733;
+}
+
+/* Logout Button */
+.logout {
+    text-align: center;
+    margin-top: auto; /* เลื่อน Logout ไปอยู่ด้านล่าง */
+    padding-top: 20px; /* เพิ่มช่องว่างด้านบน */
+}
+
+.logout a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff5733;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logout a i {
+    font-size: 20px;
+}

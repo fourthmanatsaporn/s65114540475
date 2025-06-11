@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}คอร์สเรียนทั้งหมด{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/all_courses.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+<main class="courses-page">
+    <div class="container">
+        <h1 class="page-title">คอร์สเรียนทั้งหมด</h1>
+        <div class="courses-grid">
+            <div class="courses-grid">
+                {% for course in courses %}
+                <!-- คอร์สเรียนทั้งหมด -->
+                <section class="all-courses">
+                    <div class="course-item">
+                        <div class="course-thumbnail">
+                            <img src="{{ course.image.url }}" alt="{{ course.name }}">
+                        </div>
+                        <div class="course-info">
+                            <h3>{{ course.title }}</h3>
+                            <p>{{ course.description }}</p>
+                            <td>{{ course.instructor }}</td>
+                            <p class="price">{{ course.price }} ฿</p>
+                            <div class="course-buttons">
+                                <a href="{% url 'register' %}" class="btn blue">จองคอร์ส</a>
+                                <a href="{% url 'course_details' course.id %}" class="btn orange">ดูรายละเอียดเพิ่มเติม</a>
+                            </div>
+                        </div>
+                    </div>
+    
+                </section>
+                {% empty %}
+                <p>ไม่มีคอร์สที่พร้อมใช้งาน</p>
+                {% endfor %}
+            </div>
+
+            <!-- ✅ คอร์สเรียนแบบวิดีโอ -->
+            <h2 class="section-title">คอร์สเรียนแบบวิดีโอ</h2>
+            <hr class="section-divider">
+            <div class="courses-grid">
+                {% for course in video_courses %}
+                <section class="all-courses">
+                    <div class="course-item">
+                        <div class="course-thumbnail">
+                            <img src="{{ course.image.url }}" alt="{{ course.title }}">
+                        </div>
+                        <div class="course-info">
+                            <h3>{{ course.title }}</h3>
+                            <p>{{ course.description }}</p>
+                            <p class="instructor">ผู้สอน: {{ course.instructor }}</p>
+                            <p class="price">{{ course.price }} ฿</p>
+                            <div class="course-buttons">
+                                <a href="{% url 'register' %}" class="btn green">ซื้อคอร์ส</a>
+                                <a href="{% url 'video_course_details_user' course.id %}" class="btn orange">ดูรายละเอียดเพิ่มเติม</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {% empty %}
+                <p>ไม่มีคอร์สวิดีโอที่พร้อมใช้งาน</p>
+                {% endfor %}
+            </div>
+    </div>
+</main>
+{% endblock %}

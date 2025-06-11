@@ -1,0 +1,61 @@
+/* General Styles */
+.header {
+    width: 100%;
+    height: 10%;
+    background: linear-gradient(
+        to right,
+        rgba(180, 220, 240, 0.8), /* สีน้ำเงินอ่อน */
+        rgba(240, 200, 230, 0.8), /* สีชมพูอ่อน */
+        rgba(250, 190, 150, 0.8) /* สีส้มอ่อน */
+    );
+    padding: 10px 0; /* ลด padding เพื่อให้ข้อความพอดี */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed; /* ตรึงส่วน Header */
+    top: 0;
+    z-index: 1000;
+    font-family: "Mali", serif;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* ให้แต่ละส่วนชิดซ้ายและขวา */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Logo Section */
+.logo {
+    text-align: left; /* ชิดซ้าย */
+
+}
+
+.logo img {
+    height: auto; /* ให้ภาพปรับตามอัตราส่วน */
+    width: 80px; /* กำหนดขนาดความกว้าง */
+
+}
+
+/* Title Section */
+.title {
+    position: absolute; /* ใช้จัดตำแหน่ง */
+    top: 50%; /* ระยะจากขอบด้านบน 50% */
+    left: 59%; /* ระยะจากขอบด้านซ้าย 50% */
+    transform: translate(-50%, -50%); /* ดึงกลับครึ่งหนึ่งของตัวเองให้ตรงกลางพอดี */
+    text-align: center;
+    width: 100%; /* เพิ่มความกว้างให้ครอบคลุม */
+    height: auto; /* ปรับความสูงอัตโนมัติตามเนื้อหา */
+}
+
+
+.title h1 {
+    font-size: 2rem; /* ปรับขนาด */
+    font-weight: bold;
+    color: #663399;
+    margin: 0;
+}
+
+.title .highlight {
+    color: #FF5733;
+}

@@ -1,0 +1,47 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/admin/navbar_admin.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+
+<div class="sidebar">
+    <div class="profile-icon">
+        <a href="{% url 'profile_admin' %}" class="profile-link">
+            <div class="profile-img-container">
+                <img src="{{ user.profile.get_profile_picture }}" alt="Profile" class="profile-img">
+            </div>
+        </a>
+        <div class="profile-username">{{ user.username }}</div>
+    </div>
+
+   
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+        <li class="{% if request.resolver_match.url_name == 'admin_dashboard' %}active{% endif %}">
+            <a href="{% url 'admin_dashboard' %}">Dashboard</a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'review_booking_courses' %}active{% endif %}">
+            <a href="{% url 'review_booking_courses' %}">ตรวจสอบคอร์สเรียนแบบจอง</a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'review_video_courses' %}active{% endif %}">
+            <a href="{% url 'review_video_courses' %}">ตรวจสอบคอร์สเรียนแบบวิดีโอ</a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'sales'  or request.resolver_match.url_name == 'booking_detail' or request.resolver_match.url_name == 'video_order_detail'  %}active{% endif %}">
+            <a href="{% url 'sales' %}">การขาย</a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'user_list' or request.resolver_match.url_name == 'register_instructor'   %}active{% endif %}">
+            <a href="{% url 'user_list' %}">รายชื่อ</a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'banners_admin'  %}active{% endif %}">
+            <a href="{% url 'banners_admin' %}">ตรวจสอบโฆษณา</a>
+        </li>
+    </ul>
+
+    <div class="logout-container">
+        <a href="{% url 'admin_logout' %}" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> ออกจากระบบ
+        </a>
+        
+    </div>
+
+</div>

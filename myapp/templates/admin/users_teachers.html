@@ -1,0 +1,109 @@
+{% extends 'admin/base_admin.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin/users_teachers.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+{% block title %}รายชื่อสมาชิกและผู้สอน{% endblock %}
+
+{% block content %}
+<body class="body-wrapper">
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">รายชื่อสมาชิกและผู้สอน</h1>
+        <div class="user-type-buttons">
+            <button id="membersBtn" class="btn-tab active">รายชื่อสมาชิก</button>
+            <button id="teachersBtn" class="btn-tab">รายชื่อผู้สอน</button>
+        </div>
+        <div id="membersList" class="user-list">
+            <h2 class="list-title">รายชื่อสมาชิก</h2>
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        
+                        <th>ชื่อ</th>
+                        <th>นามสกุล</th>
+                        <th>อีเมล</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if members %}
+                        {% for member in members %}
+                            <tr>
+                                
+                                <td>{{ member.first_name }}</td>
+                                <td>{{ member.last_name }}</td>
+                                <td>{{ member.email }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: red;">ไม่มีข้อมูลสมาชิก</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <div id="teachersList" class="user-list hidden">
+            <h2 class="list-title">รายชื่อผู้สอน</h2>
+            <div class="register-teacher">
+                <a href="{% url 'register_instructor' %}" class="btn-register-teacher">ลงทะเบียนผู้สอน</a> 
+            </div>
+        
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>รูปผู้สอน</th>
+                        <th>ชื่อ</th>
+                        <th>นามสกุล</th>
+                        <th>อีเมล</th>
+                        <th>วิชาที่สอน</th>
+                        <th>เบอร์โทร</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if instructors %}
+                        {% for instructor in instructors %}
+                            <tr>
+                                <td>
+                                    {% if instructor.profile_picture %}
+                                        <img src="{{ instructor.profile_picture.url }}" alt="รูปภาพผู้สอน" style="width: 50px; height: 50px; border-radius: 50%;">
+                                    {% else %}
+                                        <span style="color: gray;">ไม่มีรูป</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ instructor.user.first_name }}</td>
+                                <td>{{ instructor.user.last_name }}</td>
+                                <td>{{ instructor.user.email }}</td>
+                                <td>{{ instructor.subject }}</td>
+                                <td>{{ instructor.phone }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="5" style="text-align: center; color: red;">ไม่มีข้อมูลผู้สอน</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.getElementById('membersBtn').addEventListener('click', function() {
+        document.getElementById('membersList').classList.remove('hidden');
+        document.getElementById('teachersList').classList.add('hidden');
+        this.classList.add('active');
+        document.getElementById('teachersBtn').classList.remove('active');
+    });
+
+    document.getElementById('teachersBtn').addEventListener('click', function() {
+        document.getElementById('teachersList').classList.remove('hidden');
+        document.getElementById('membersList').classList.add('hidden');
+        this.classList.add('active');
+        document.getElementById('membersBtn').classList.remove('active');
+    });
+</script>
+{% endblock %}

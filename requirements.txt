@@ -1,0 +1,23 @@
+Django>=5.1
+gunicorn
+PyMySQL
+mysqlclient
+dj-database-url
+whitenoise
+djangorestframework
+bcrypt
+djangorestframework-simplejwt
+plotly
+pillow
+sqlparse
+tzdata
+
+# Google API (สำหรับดึงวิดีโอจาก Google Drive)
+google-api-python-client
+google-auth
+google-auth-httplib2
+google-auth-oauthlib
+httplib2
+uritemplate
+cryptography
+

@@ -1,0 +1,90 @@
+{% extends 'instructor/base_instructor.html' %}
+{% load static %}
+
+{% block title %}จัดการสไลด์เบนเนอร์{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/instructor/banners.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+<div class="body-container">
+    <div class="banner-container">
+        <div class="header-section">
+            <h1 class="page-title">จัดการสไลด์เบนเนอร์</h1>
+            <a href="{% url 'add_banner' %}" class="add-banner-btn">เพิ่มเบนเนอร์</a>
+        </div>
+
+        <div class="table-section">
+            <table class="banner-table">
+                <thead>
+                    <tr>
+                        <th>รูป</th>
+                        <th>วันที่สร้าง</th>
+                        <th>สถานะ</th>
+                        <th>จัดการ</th>
+                        <th>ลบ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for banner in banners %}
+                    <tr>
+                        <td>
+                            <img src="{{ banner.image.url }}" alt="Banner Image" class="banner-image">
+                        </td>
+                        <td>{{ banner.created_at|date:"d/m/Y H:i" }}</td>
+                        <td>
+                            {% if banner.status == "pending" %}
+                                <span class="pending">⏳ รออนุมัติ</span>
+                            {% elif banner.status == "approved" %}
+                                <span class="approved">✅ อนุมัติแล้ว</span>
+                            {% elif banner.status == "rejected" %}
+                                <span class="rejected">❌ ถูกปฏิเสธ</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                {% if banner.status == "pending" %}
+                                    <button class="disabled-btn" disabled>รออนุมัติ</button>
+                                {% elif banner.status == "rejected" %}
+                                    <button class="message-btn" onclick="openRejectModal('{{ banner.id }}', '{{ banner.rejection_message }}')">💬 ดูข้อความ</button>
+                                {% endif %}
+                            </div>
+                        </td>
+                        
+                        <td>
+                            <a href="{% url 'add_banner' %}" class="retry-btn">🔄 แก้ไข</a>
+                            <a href="{% url 'delete_banner' banner.id %}" class="delete-btn">🗑️ ลบ</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ ป๊อปอัพแสดงเหตุผลที่ถูกปฏิเสธ -->
+<div id="rejectModal" class="modal">
+    <div class="modal-content">
+        <h2>📢 ข้อความจากแอดมิน</h2>
+        <p id="rejectionText"></p>
+        <button class="btn-close" onclick="closeRejectModal()">ปิด</button>
+    </div>
+</div>
+
+<!-- ✅ JavaScript ควบคุมป๊อปอัพ -->
+<script>
+    function openRejectModal(bannerId, rejectionMessage) {
+        document.getElementById("rejectionText").innerText = rejectionMessage || "ไม่มีข้อความระบุ";
+        document.getElementById("rejectModal").style.display = "block";
+    }
+
+    function closeRejectModal() {
+        document.getElementById("rejectModal").style.display = "none";
+    }
+</script>
+{% endblock %}

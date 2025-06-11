@@ -1,0 +1,161 @@
+{% extends 'admin/base_admin.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin/review_video_courses.css' %}">
+{% endblock %}
+
+{% block title %}ตรวจสอบคอร์สเรียนแบบวิดีโอ{% endblock %}
+
+{% block content %}
+
+<body class="body-wrapper">
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">ตรวจสอบคอร์สเรียนแบบวิดีโอ</h1>
+        <table class="course-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>รูปภาพปก</th> <!-- ✅ เพิ่มคอลัมน์สำหรับรูปภาพ -->
+                    <th>ชื่อคอร์ส</th>
+                    <th>คำอธิบาย</th>
+                    <th>ราคา</th>
+                    <th>ผู้สอน</th>
+                    <th>วันที่สร้าง</th>
+                    <th>สถานะ</th>
+                    <th>QR Code การชำระเงิน</th>
+                    <th>การจัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>
+                        <img src="{{ course.image.url }}" alt="รูปปกคอร์ส" class="course-cover"> <!-- ✅ แสดงรูปภาพ -->
+                    </td>
+                    <td>{{ course.title }}</td>
+                    <td>{{ course.description }}</td>
+                    <td>{{ course.price }} ฿</td>
+                    <td>{{ course.instructor }}</td>
+                    <td>{{ course.created_at|date:"d/m/Y H:i" }}</td>
+                    <!-- ✅ แสดงสถานะของคอร์ส -->
+                    <td>
+                        {% if course.status == "pending" %}
+                        <span class="status-pending">รอการอนุมัติ</span>
+                        {% elif course.status == "approved" %}
+                        <span class="status-approved">อนุมัติแล้ว</span>
+                        {% elif course.status == "revision" %}
+                        <span class="status-revision">ส่งกลับมาแก้ไข</span>
+                        {% elif course.status == "revised" %}
+                        <span class="status-revised">แก้ไขแล้วรอการตรวจสอบ</span>
+                        {% else %}
+                        <span class="status-unknown">สถานะไม่ทราบ</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if course.payment_qr %}
+                        <img src="{{ course.payment_qr.url }}" alt="QR Code" class="qr-image">
+                        {% else %}
+                        <form method="post" enctype="multipart/form-data"
+                            action="{% url 'upload_video_course_qr' course.id %}">
+                            {% csrf_token %}
+                            <input type="file" name="payment_qr" accept="image/*" required>
+                            <button type="submit" class="btn-upload">อัปโหลด</button>
+                        </form>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <!-- ✅ ปุ่มอนุมัติ -->
+                        <form method="post" action="{% url 'approve_video_course' course.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-approve">อนุมัติ</button>
+                        </form>
+
+
+                        <!-- ✅ ปุ่มส่งกลับไปแก้ไข -->
+                        <button class="btn-reject"
+                            onclick="openRevisionModal('{{ course.id }}')">ส่งกลับไปแก้ไข</button>
+
+                        <!-- ✅ Modal สำหรับใส่เหตุผลก่อนส่งกลับ -->
+                        <div id="revisionModal-{{ course.id }}" class="modal">
+                            <div class="modal-content">
+                                <span class="close" onclick="closeRevisionModal('{{ course.id }}')">&times;</span>
+                                <h3>ส่งคอร์สกลับไปแก้ไข</h3>
+                                <form method="post" action="{% url 'send_back_video_course' course.id %}">
+                                    {% csrf_token %}
+                                    <label for="revision_message">เหตุผล:</label>
+                                    <textarea name="revision_message" required></textarea>
+                                    <button type="submit" class="btn-reject">ยืนยัน</button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="9" class="text-center">ไม่มีคอร์สที่รอการตรวจสอบ</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<!-- ✅ JavaScript สำหรับ Modal -->
+<script>
+    function openRevisionModal(courseId) {
+        document.getElementById("revisionModal-" + courseId).style.display = "block";
+    }
+
+    function closeRevisionModal(courseId) {
+        document.getElementById("revisionModal-" + courseId).style.display = "none";
+    }
+</script>
+<style>
+    .status-pending {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .status-approved {
+        color: green;
+        font-weight: bold;
+    }
+
+    .status-revision {
+        color: red;
+        font-weight: bold;
+    }
+
+    .status-revised {
+        color: blue;
+        font-weight: bold;
+    }
+
+    .status-unknown {
+        color: gray;
+        font-weight: bold;
+    }
+
+.btn-upload {
+    background-color: #ff9800;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-upload:hover {
+    background-color: #e68900;
+}
+
+.btn-approve[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+</style>
+
+{% endblock %}

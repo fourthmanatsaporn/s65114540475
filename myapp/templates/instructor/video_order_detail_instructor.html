@@ -1,0 +1,60 @@
+{% extends 'instructor/base_instructor.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin/sales.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block title %}รายละเอียดการซื้อคอร์สวิดีโอ{% endblock %}
+
+{% block content %}
+<body class="body-wrapper">
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">รายละเอียดการซื้อ - {{ course.title }}</h1>
+
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>ชื่อลูกค้า</th>
+                    <th>อีเมล</th>
+                    <th>สลิปการโอน</th>
+                    <th>สถานะ</th>
+                    <th>เวลาการซื้อ</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.user.first_name }} {{ order.user.last_name }}</td>
+                    <td>{{ order.user.email }}</td>
+                    <td>
+                        {% if order.payment_slip %}
+                            <a href="{{ order.payment_slip.url }}" target="_blank">
+                                <img src="{{ order.payment_slip.url }}" alt="สลิป" class="slip-image">
+                            </a>
+                        {% else %}
+                            <span class="text-muted">ไม่มีสลิป</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if order.payment_status == 'pending' %}
+                            <span class="status-pending">รอการตรวจสอบ</span>
+                        {% elif order.payment_status == 'confirmed' %}
+                            <span class="status-confirmed">✅ ชำระเงินแล้ว</span>
+                        {% elif order.payment_status == 'rejected' %}
+                            <span class="status-rejected">❌ ถูกปฏิเสธ</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ order.payment_date|date:"d/m/Y H:i" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">ไม่มีข้อมูลการซื้อ</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+{% endblock %}

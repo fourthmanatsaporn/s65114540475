@@ -1,0 +1,107 @@
+body {
+    margin: 0; /* ลบระยะขอบรอบด้าน */
+    padding: 0; /* ลบระยะ padding รอบด้าน */
+    font-family: 'Arial', sans-serif; /* ตั้งฟอนต์มาตรฐาน */
+    font-size: 16px; /* ขนาดตัวอักษรพื้นฐาน */
+    color: #333; /* สีข้อความพื้นฐาน */
+    background-color: #FFF7F2; /* สีพื้นหลัง */
+    line-height: 1.6; /* ความสูงของบรรทัดให้ดูอ่านง่าย */
+}
+.dashboard-container {
+    padding: 10px;
+    background-color: #ffffff;
+    min-height: 50vh; /* ให้เนื้อหาเต็มหน้าจอแนวตั้ง */
+    width: 70%; /* ปรับความกว้างให้เหมาะสม */
+/* จัดให้อยู่ตรงกลาง */
+    border-radius: 10px; /* เพิ่มขอบมน */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเพื่อความสวยงาม */
+    margin-left: 400px;
+    margin-top: 130px; /* เพิ่มระยะห่างจากขอบด้านบน */
+}
+
+.dashboard-title {
+    font-size: 2rem; /* เพิ่มขนาดหัวเรื่อง */
+    color: #663399;
+    text-align: center;
+    margin-bottom: 20px; /* เพิ่มระยะห่างด้านล่าง */
+    font-weight: bold; /* เน้นตัวอักษร */
+}
+
+.course-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* เพิ่มระยะห่างด้านบน */
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* เงาเบาลง */
+    border-radius: 8px; /* ความมนของขอบ */
+    overflow: hidden;
+}
+
+.course-table th,
+.course-table td {
+    text-align: center;
+    padding: 10px; /* ลด padding เพื่อความกระชับ */
+    border-bottom: 1px solid #ddd;
+}
+
+.course-table th {
+    background-color: #ff5733;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.course-table td {
+    font-size: 0.95rem; /* ลดขนาดตัวอักษรเล็กน้อย */
+    color: #333;
+}
+
+.course-table tr:hover {
+    background-color: #f7f7f7; /* เพิ่มพื้นหลังเมื่อ hover */
+}
+
+.course-table .course-image {
+    width: 50px; /* ลดขนาดรูป */
+    height: 50px;
+    border-radius: 5px; /* ความมนเล็กน้อย */
+    object-fit: cover;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.text-center {
+    font-size: 0.9rem; /* ลดขนาดตัวอักษร */
+    color: #666;
+    font-style: italic; /* เพิ่มสไตล์ italic */
+}
+
+.btn-approve,
+.btn-reject {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-approve {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-approve:hover {
+    background-color: #218838;
+    transform: translateY(-2px); /* เพิ่มเอฟเฟกต์เลื่อนขึ้น */
+}
+
+.btn-reject {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-reject:hover {
+    background-color: #c82333;
+    transform: translateY(-2px); /* เพิ่มเอฟเฟกต์เลื่อนขึ้น */
+}

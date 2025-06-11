@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จองคอร์สเรียน</title>
+    <link rel="stylesheet" href="{% static 'css/booking_course.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="container">
+        <h2>จองคอร์สเรียน (ISR)</h2>
+        <!-- ✅ แสดงรายละเอียดคอร์สที่จอง -->
+        <div class="course-preview">
+            <h2>คอร์สที่คุณเลือก</h2>
+            <img src="{{ course.image.url }}" class="course-image">
+            <h3>{{ course.name }}</h3>
+        </div>
+
+        <div class="container">
+           
+       
+
+            <form method="POST" action="{% url 'submit_booking' course.id %}">
+
+                {% csrf_token %}
+
+                <!-- ✅ ข้อมูลนักเรียน -->
+                <div class="section">
+                    <h3>ข้อมูลนักเรียน</h3>
+                    <label>ชื่อ-นามสกุล (ภาษาไทย):</label>
+                    <input type="text" name="student_name" required>
+
+                    <label>ชื่อ-นามสกุล (ภาษาอังกฤษ):</label>
+                    <input type="text" name="student_name_en" required>
+
+                    <label>ชื่อเล่น (ไทย):</label>
+                    <input type="text" name="nickname_th" required>
+
+                    <label>ชื่อเล่น (อังกฤษ):</label>
+                    <input type="text" name="nickname_en" required>
+
+                    <label>อายุ:</label>
+                    <input type="number" name="age" min="3" max="12" required>
+
+                    <label>ระดับชั้น:</label>
+                    <select name="grade" id="grade-select" required>
+                        <option value="อนุบาล 2">อนุบาล 2</option>
+                        <option value="อนุบาล 3">อนุบาล 3</option>
+                        <option value="ประถมศึกษาปีที่ 1">ประถมศึกษาปีที่ 1</option>
+                        <option value="ประถมศึกษาปีที่ 2">ประถมศึกษาปีที่ 2</option>
+                        <option value="ประถมศึกษาปีที่ 3">ประถมศึกษาปีที่ 3</option>
+                        <option value="ประถมศึกษาปีที่ 4">ประถมศึกษาปีที่ 4</option>
+                        <option value="ประถมศึกษาปีที่ 5">ประถมศึกษาปีที่ 5</option>
+                        <option value="ประถมศึกษาปีที่ 6">ประถมศึกษาปีที่ 6</option>
+                        <option value="อื่นๆ">อื่นๆ</option>
+                    </select>
+                    
+                    <!-- กล่องป้อนข้อมูล "อื่นๆ" -->
+                    <input type="text" name="other_grade" id="other-grade" placeholder="กรอกระดับชั้นอื่นๆ" style="display: none;">
+                </div>
+
+                <!-- ✅ ข้อมูลผู้ปกครอง -->
+                <div class="section">
+                    <h3>ข้อมูลผู้ปกครอง</h3>
+                    <label>ชื่อเล่น:</label>
+                    <input type="text" name="parent_nickname" required>
+
+                    <label>เบอร์โทรศัพท์:</label>
+                    <input type="tel" name="phone" required>
+
+
+                    <label>ไอดีไลน์ (ถ้ามี):</label>
+                    <input type="text" name="line_id">
+                </div>
+
+                <!-- ✅ รายละเอียดการเลือกคอร์ส -->
+                <div class="section">
+                    <h3>เลือกคอร์สที่ต้องการเรียน</h3>
+
+                    <label>เลือกช่วงเวลาที่เรียน:</label>
+                    <select name="selected_course" required>
+                        <option value="K1">K1 = 9:00 - 10:00</option>
+                        <option value="K2-3">K2-3 = 10:30 - 11:30</option>
+                        <option value="P1-3">P1-3 = 10:30 - 11:30</option>
+                        <option value="P4-6">P4-6 = 10:30 - 11:30</option>
+                    </select>
+                    
+                
+
+                <!-- ✅ ปุ่มชำระเงิน (พาไปหน้าชำระเงิน) -->
+                <button  type="submit">✅ ชำระเงิน</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("grade-select").addEventListener("change", function() {
+            var otherInput = document.getElementById("other-grade");
+            if (this.value === "อื่นๆ") {
+                otherInput.style.display = "block";
+                otherInput.required = true;
+            } else {
+                otherInput.style.display = "none";
+                otherInput.required = false;
+            }
+        });
+    </script>
+
+</body>
+</html>

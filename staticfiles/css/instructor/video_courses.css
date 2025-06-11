@@ -1,0 +1,94 @@
+/* General Styles */
+.body-container {
+    background-color: #FFF7F2; /* สีพื้นหลัง */
+
+    display: flex;
+    justify-content: center; /* จัดให้อยู่กึ่งกลางแนวนอน */
+    align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    min-height: 100vh; /* ให้ความสูงเท่าหน้าจอ */
+}
+
+
+/* Wrapper for Centering Content */
+.content-wrapper {
+    display: flex;
+    justify-content: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+    align-items: flex-start; /* จัดให้อยู่ชิดด้านบนของพื้นที่ */
+    width: 100%;
+    max-width: 1200px;
+    padding: 10px; /* ลด padding ของ content-wrapper */
+}
+
+/* Container */
+.video-course-container {
+    width: 100%;
+    max-width: 1500px;
+    margin-left: 200px; /* เพิ่มระยะห่างด้านซ้าย */
+    padding: 90px;
+    background-color: #fdfdfd; /* สีพื้นหลัง */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+
+}
+/* Header Section */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.page-title {
+    font-size: 1.8rem;
+    color: #663399;
+}
+
+.add-course-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.add-course-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Table Section */
+.table-section {
+    width: 100%;
+}
+
+.video-course-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.video-course-table th,
+.video-course-table td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.video-course-table th {
+    background-color: #ff5733;
+    color: white;
+    font-weight: bold;
+}
+
+.course-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.course-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    object-fit: cover;
+}

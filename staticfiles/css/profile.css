@@ -1,0 +1,108 @@
+body {
+    font-family: "Mali", serif;
+    background-color: #FAD1D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-image: url('../images/logo00.png'); /* โลโก้พื้นหลัง */
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+}
+
+.profile-container {
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%; /* ปรับให้กินความกว้าง */
+    max-width: 500px; /* ขนาดความกว้างสูงสุด */
+    min-height: 500px; /* กำหนดความสูงขั้นต่ำ */
+    border-radius: 30px;
+    padding: 30px 20px; /* ระยะขอบด้านใน */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #613E74; /* สีขอบ */
+    text-align: center;
+    margin: auto; /* ทำให้อยู่ตรงกลาง */
+  
+}
+
+.profile-card {
+    margin-top: 50px; /* ระยะห่างระหว่างหัวข้อ */
+}
+
+.profile-img-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px auto; /* จัดให้อยู่ตรงกลางและเพิ่มระยะห่างล่าง */
+    border-radius: 50%;
+    background-color: #F3F3F3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #613E74;
+    margin-bottom: 10px; /* ระยะห่างระหว่างหัวข้อ */
+}
+
+h2 {
+    font-size: 20px;
+    color: #4AA1E0;
+    margin: 10px 0 20px 0; /* เพิ่มระยะบน-ล่าง */
+}
+
+.profile-actions {
+    margin-top: 20px; /* ระยะห่างระหว่างปุ่มกับภาพโปรไฟล์ */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* ระยะห่างระหว่างปุ่ม */
+}
+
+.profile-actions .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-pink {
+    background-color: #FFACB7;
+    color: #613E74;
+    border: 1px solid #FFACB7;
+}
+
+.btn-blue {
+    background-color: #87CEEB;
+    color: #613E74;
+    border: 1px solid #87CEEB;
+}
+
+.btn-lightblue {
+    background-color: #FF0000;
+    color: #FFFFFF;
+    border: 1px solid #FF0000;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
+
+.btn i {
+    margin-right: 8px;
+    font-size: 18px;
+}

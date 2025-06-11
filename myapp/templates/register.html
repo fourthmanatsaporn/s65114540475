@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <title>Register</title>
+    <!-- ลิงก์ไปยังไฟล์ CSS -->
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+
+<body>
+
+
+    <div class="main-container">
+        <!-- Banner Section -->
+        <div class="left-section">
+            <img src="{% static 'images/D.jpg' %}" alt="Banner">
+        </div>
+
+        <!-- Registration Form -->
+        <div class="form-container">
+            <h2>ลงทะเบียน</h2>
+            {% if messages %}
+            <div id="alert-container">
+                {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+
+
+            <form method="POST">
+                {% csrf_token %}
+                <!-- ชื่อผู้ใช้งาน -->
+                <input type="text" name="username" placeholder="ชื่อผู้ใช้งาน" required>
+
+                <!-- ชื่อ และนามสกุล -->
+                <div class="name-fields">
+                    <input type="text" name="first_name" placeholder="ชื่อ" required>
+                    <input type="text" name="last_name" placeholder="นามสกุล" required>
+                </div>
+
+                <!-- อีเมล -->
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" placeholder="อีเมล" required>
+                </div>
+
+                <!-- รหัสผ่าน -->
+                <div class="input-group">
+                    <input type="password" id="password" name="password" placeholder="รหัสผ่าน" required>
+                    <i class="fas fa-eye-slash" id="togglePassword"></i>
+                </div>
+
+                <!-- ยืนยันรหัสผ่าน -->
+                <div class="input-group">
+                    <input type="password" id="confirmPassword" name="password2" placeholder="ยืนยันรหัสผ่าน" required>
+                    <i class="fas fa-eye-slash" id="toggleConfirmPassword"></i>
+                </div>
+
+                <!-- JavaScript สำหรับการแสดง/ซ่อนรหัสผ่าน -->
+                <script>
+                    document.getElementById("togglePassword").addEventListener("click", function () {
+                        const passwordInput = document.getElementById("password");
+                        const icon = this;
+
+                        if (passwordInput.type === "password") {
+                            passwordInput.type = "text";
+                            icon.classList.remove("fa-eye-slash");
+                            icon.classList.add("fa-eye");
+                        } else {
+                            passwordInput.type = "password";
+                            icon.classList.remove("fa-eye");
+                            icon.classList.add("fa-eye-slash");
+                        }
+                    });
+
+                    document.getElementById("toggleConfirmPassword").addEventListener("click", function () {
+                        const passwordInput = document.getElementById("confirmPassword");
+                        const icon = this;
+
+                        if (passwordInput.type === "password") {
+                            passwordInput.type = "text";
+                            icon.classList.remove("fa-eye-slash");
+                            icon.classList.add("fa-eye");
+                        } else {
+                            passwordInput.type = "password";
+                            icon.classList.remove("fa-eye");
+                            icon.classList.add("fa-eye-slash");
+                        }
+                    });
+                </script>
+
+                <!-- ยอมรับเงื่อนไข -->
+                <div class="checkbox-container">
+                    <input type="checkbox" name="agree" required>
+                    <label>ฉันยอมรับเงื่อนไข</label>
+                </div>
+
+                <!-- ปุ่มลงทะเบียน -->
+                <button type="submit">ลงทะเบียน</button>
+                <a href="{% url 'login' %}" class="login-button">เข้าสู่ระบบ</a>
+            </form>
+        </div>
+    </div>
+    <div id="successPopup" class="popup-container" style="display: none;">
+        <div class="popup-content">
+            <img src="{% static 'images/cc.png' %}" alt="Success">
+            <h3>✅ สมัครสมาชิกสำเร็จ!</h3>
+            <p>คุณสามารถเข้าสู่ระบบได้ทันที</p>
+        </div>
+    </div>
+    
+    <script>
+        window.onload = function () {
+            const successPopup = document.getElementById("successPopup");
+        
+            // ✅ ตรวจสอบว่ามีข้อความสมัครสำเร็จหรือไม่
+            setTimeout(() => {
+                const messages = document.querySelectorAll(".alert");
+                messages.forEach(msg => {
+                    if (msg.textContent.includes("✅ สมัครสมาชิกสำเร็จ!")) {
+                        successPopup.style.display = "flex";
+        
+                        // ✅ ซ่อนฟอร์มลงทะเบียน (ให้เบลอ)
+                        document.querySelector(".main-container").style.filter = "blur(3px)";
+        
+                        // ✅ ปิดป๊อปอัปและเปลี่ยนหน้าไป Login อัตโนมัติใน 3 วินาที
+                        setTimeout(() => {
+                            window.location.href = "{% url 'login' %}";
+                        }, 3000);
+                    }
+                });
+            }, 100); // ✅ ให้ดีเลย์ 100ms เพื่อให้ DOM โหลดเสร็จ
+        };
+        </script>
+        
+        
+
+</body>
+
+</html>

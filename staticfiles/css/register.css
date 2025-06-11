@@ -1,0 +1,201 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #6E6196; /* เปลี่ยนสีพื้นหลัง */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: none; /* ยกเลิกภาพพื้นหลัง */
+}
+
+/* Main Container */
+.main-container {
+    display: flex;
+    flex-direction: row; /* จัดให้ภาพและฟอร์มอยู่ในแถวเดียวกัน */
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1300px; /* เพิ่มความกว้าง */
+    width: 100%;
+    overflow: hidden;
+    margin: 20px auto; /* เพิ่มระยะห่างจากขอบด้านบน */
+}
+
+/* Left Section: Banner/Image */
+.left-section {
+    flex: 1; /* ใช้พื้นที่ครึ่งหนึ่งของคอนเทนเนอร์ */
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-section img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-right: 1px solid #ddd; /* เพิ่มเส้นแบ่งระหว่างส่วนรูปภาพกับฟอร์ม */
+}
+
+/* Right Section: Form */
+.form-container {
+    flex: 1; /* ใช้พื้นที่ครึ่งหนึ่งของคอนเทนเนอร์ */
+    padding: 40px;
+    text-align: center;
+    background-color: #fff; /* เพิ่มพื้นหลังขาว */
+}
+
+h2 {
+    font-size: 28px;
+    color: #4A148C;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* จัดให้อยู่ตรงกลาง */
+}
+
+input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #613E74;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #613E74; /* เปลี่ยนสีข้อความในช่องกรอก */
+    background-color: rgba(255, 255, 255, 0.6); 
+    width: 80%; /* ลดความกว้างให้เล็กลง */
+    transition: border-color 0.3s, box-shadow 0.3s; 
+}
+input::placeholder {
+    color: #613E74; /* เปลี่ยนสีข้อความ placeholder */
+    opacity: 0.7; /* เพิ่มความโปร่งใสให้ข้อความ placeholder */
+}
+
+input:focus {
+    outline: none; /* เอาเส้นขอบ default ออก */
+    border-color: #9C27B0; /* เปลี่ยนสีกรอบเมื่อ focus */
+    box-shadow: 0 0 5px #9C27B0; /* เพิ่มเงาสีเมื่อ focus */
+}
+
+input:hover {
+    border-color: #9C27B0; /* เปลี่ยนสีกรอบเมื่อ hover */
+}
+
+.name-fields {
+    display: flex;
+    gap: 10px;
+    width: 80%; /* จัดให้ช่องกรอกชื่อและนามสกุลอยู่ในความกว้างเดียวกับช่องอื่น */
+}
+
+button {
+    padding: 12px;
+    background-color: #613E74;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 80%; /* ลดความกว้างให้เหมาะสม */
+    margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่าง */
+}
+
+button:hover {
+    background-color: #9C27B0;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    justify-content: flex-start;
+}
+
+.checkbox-container input {
+    margin-right: 10px;
+}
+
+.checkbox-container label {
+    font-size: 14px;
+    color: #4A148C;
+    text-align: left; /* ให้ข้อความจัดอยู่ด้านซ้าย */
+}
+
+ul {
+    color: red;
+    margin-bottom: 15px;
+}
+
+
+
+.input-group {
+    position: relative;
+    margin-bottom: 10px;
+    width: 80%; /* ปรับให้มีความกว้างเหมือนกับช่องอื่น */
+    display: flex;
+    align-items: center; /* จัดให้อยู่ตรงกลาง */
+}
+
+.input-group input {
+    flex: 1; /* ให้ input ใช้พื้นที่ทั้งหมดที่เหลือ */
+    padding: 12px 15px;
+    padding-right: 40px; /* เพิ่มพื้นที่สำหรับไอคอน */
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.6);
+    color: #613E74;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group i {
+    position: absolute;
+    right: 15px; /* วางไอคอนด้านขวา */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #613E74;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #9C27B0;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 5px rgba(74, 20, 140, 0.5);
+}
+
+.login-button {
+
+    color: #613E74;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 16px;
+    flex: 1; /* ให้ปุ่มใช้พื้นที่เท่ากัน */
+    text-decoration: none; /* เอาเส้นใต้ของลิงก์ออก */
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #FAAB66;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 80%; /* ลดความกว้างให้เหมาะสม */
+
+}

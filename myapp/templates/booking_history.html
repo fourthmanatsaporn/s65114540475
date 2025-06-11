@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/booking_history.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <title>โปรไฟล์ผู้ใช้</title>
+</head>
+<body class="body-wrapper">
+    <div class="dashboard-container">
+        
+        <h1 class="dashboard-title">📜 ประวัติการจองและการซื้อคอร์สของฉัน</h1>
+    <!-- คอร์สจอง -->
+    {% if bookings %}
+    <h2 class="section-title"><i class="fas fa-calendar-check"></i> คอร์สเรียนแบบจอง</h2>
+    <div class="table-wrapper">
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>ชื่อคอร์ส</th>
+                    <th>เวลาที่เลือก</th>
+                    <th>วันที่จอง</th>
+                    <th>สถานะการจอง</th>
+                    <th>สถานะการชำระเงิน</th>
+                    <th>สลิป</th>
+                    <th>ประเภท</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.course.title }}</td>
+                    <td>{{ booking.get_selected_course_display }}</td>
+                    <td>{{ booking.booking_date|date:"d M Y, H:i" }}</td>
+                    <td><span class="status-{{ booking.booking_status }}">{{ booking.get_booking_status_display }}</span></td>
+                    <td><span class="status-{{ booking.payment_status }}">{{ booking.get_payment_status_display }}</span></td>
+                    <td>
+                        {% if booking.payment_slip %}
+                            <a href="{{ booking.payment_slip.url }}" target="_blank">
+                                <img src="{{ booking.payment_slip.url }}" alt="สลิป" class="slip-image">
+                            </a>
+                        {% else %}
+                            <span class="text-muted">ไม่มี</span>
+                        {% endif %}
+                    </td>
+                    <td><span class="badge badge-booking">จอง</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    <!-- คอร์สวิดีโอ -->
+    {% if video_orders %}
+    <h2 class="section-title"><i class="fas fa-video"></i> คอร์สเรียนแบบวิดีโอ</h2>
+    <div class="table-wrapper">
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>ชื่อคอร์ส</th>
+                    <th>วันที่ซื้อ</th>
+                    <th>QR โอนเงิน</th>
+                    <th>ประเภท</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in video_orders %}
+                <tr>
+                    <td>{{ order.course.title }}</td>
+                    <td>{{ order.payment_date|date:"d M Y, H:i" }}</td>
+                    <td>
+                        {% if order.course.payment_qr %}
+                            <a href="{{ order.course.payment_qr.url }}" target="_blank">
+                                <img src="{{ order.course.payment_qr.url }}" alt="QR" class="slip-image">
+                            </a>
+                        {% else %}
+                            <span class="text-muted">ไม่มี</span>
+                        {% endif %}
+                    </td>
+                    <td><span class="badge badge-video">วิดีโอ</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        {% else %}
+            <p class="no-booking">❌ คุณยังไม่มีประวัติการจองคอร์สเรียน</p>
+        {% endif %}
+    </div>
+</body>
+</html>

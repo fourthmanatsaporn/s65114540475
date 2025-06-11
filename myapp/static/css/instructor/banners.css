@@ -1,0 +1,202 @@
+.main-content {
+
+    margin-top: 100px;
+    margin-left: 355px; /* ระยะห่างจาก Sidebar */
+
+    background-color: #FFF7F2;
+
+
+}
+
+.body-container {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2; /* สีพื้นหลังของ body */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* แบบอักษร */
+}
+
+.banner-container {
+    font-family: "Mali", serif;
+    padding: 90px;
+    background-color: #fdfdfd; /* สีพื้นหลัง */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+}
+/* ✅ หัวข้อ */
+.page-title {
+    font-size: 28px;
+    color: #613E74;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* ✅ ปุ่มเพิ่มเบนเนอร์ */
+.add-banner-btn {
+    background: #FFC107;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    float: right;
+    transition: all 0.3s ease;
+}
+
+.add-banner-btn:hover {
+    background: #E0A800;
+    transform: scale(1.05);
+}
+
+/* ✅ ตาราง */
+.banner-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #FFF;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner-table th {
+    background: #E53935;
+    color: white;
+    padding: 12px;
+    text-align: center;
+}
+
+.banner-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* ✅ รูปเบนเนอร์ */
+.banner-image {
+    width: 120px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ ปุ่มต่างๆ */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* ✅ ปุ่มแก้ไข */
+.retry-btn {
+    background: #FFD93D;
+    color: black;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+    background: #F4C542;
+    transform: scale(1.05);
+}
+
+/* ✅ ปุ่มดูข้อความ */
+.message-btn {
+    background: #007BFF;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.message-btn:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* ✅ ปุ่มลบ */
+.delete-btn {
+    background: #FF5733;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #E53935;
+    transform: scale(1.05);
+}
+
+/* ✅ ปุ่มรออนุมัติ */
+.disabled-btn {
+    background: #B0BEC5;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    border: none;
+    font-weight: bold;
+}
+
+/* ✅ สถานะแบบต่างๆ */
+.pending { color: #FFC107; font-weight: bold; }
+.approved { color: #28A745; font-weight: bold; }
+.rejected { color: #DC3545; font-weight: bold; }
+
+/* ✅ ช่องเหตุผล */
+.reject-reason {
+    font-size: 12px;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* ✅ ป๊อปอัพพื้นหลัง */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* ✅ กล่องป๊อปอัพ */
+.modal-content {
+    background: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ ปุ่มปิด */
+.btn-close {
+    background-color: #FF6B6B;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-close:hover {
+    background-color: #E53935;
+}

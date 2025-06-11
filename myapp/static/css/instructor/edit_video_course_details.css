@@ -1,0 +1,77 @@
+.body-container{
+    font-family: "Mali", serif;
+    background-color: #FFF7F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+.edit-container {
+    width: 100%; /* ใช้พื้นที่ทั้งหมด */
+    background-color: #ffffff; /* สีพื้นหลัง */
+    border-radius: 10px; /* ขอบมน */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+    max-width: 800px; /* เพิ่มความกว้าง */
+    padding: 40px; /* เพิ่ม padding เพื่อขยาย */
+    margin: 120px auto 0; /* เพิ่ม margin-top: 20px */
+    margin-left: 400px;
+
+}
+
+.page-title {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.edit-form label {
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.edit-form input,
+.edit-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.preview-img {
+    display: block;
+    margin-top: 10px;
+    border-radius: 5px;
+    max-width: 100px;
+}
+
+.btn-save {
+    display: block;
+    width: 100%;
+    background: #007BFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background: #0056b3;
+}
+
+.preview-img {
+    display: block;
+    margin-top: 10px;
+    border-radius: 5px;
+    max-width: 150px;
+}
+
+video {
+    display: block;
+    margin-top: 10px;
+    border-radius: 5px;
+}

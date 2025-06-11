@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <title>สรุปรายการสั่งซื้อ</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/payment_page.css' %}">
+
+    <!-- FontAwesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <img src="{% static 'images/logo.png' %}" alt="ISR Logo" class="logo">
+        <h2><i class="fas fa-receipt"></i> สรุปรายการสั่งซื้อ</h2>
+
+        <!-- QR Code Section -->
+        <div class="qr-section">
+            <h3><i class="fas fa-qrcode"></i> สแกนคิวอาร์โค้ด</h3>
+          
+            {% if qr_code_url %}
+                <h3><i class="fas fa-barcode"></i> QR Code เพื่อชำระเงิน</h3>
+                <img src="{{ qr_code_url }}" alt="QR Code สำหรับคอร์ส {{ course.title }}">
+            {% else %}
+                <p style="color: red;"><i class="fas fa-exclamation-circle"></i> คอร์สนี้ยังไม่มี QR Code กรุณาติดต่อแอดมิน</p>
+            {% endif %}
+        </div>
+
+        <!-- ข้อมูลบัญชี -->
+        <p class="account-info"><i class="fas fa-university"></i> เลขบัญชี: <span class="account-number">133-3-65062-4</span></p>
+        <p class="account-info"><i class="fas fa-money-bill-wave"></i> ยอดชำระ: <span class="price">{{ course.price }} บาท/วิชา</span></p>
+
+        <!-- อัปโหลดสลิป -->
+<!-- อัปโหลดสลิป -->
+<form method="POST" action="{% url 'submit_payment' booking.id %}" enctype="multipart/form-data" id="payment-form">
+    {% csrf_token %}
+    <label for="file-upload" class="upload-label">
+        <i class="fas fa-upload"></i> อัปโหลดสลิปการชำระเงิน:
+    </label>
+    <input type="file" id="file-upload" name="payment_slip" accept="image/*" required hidden>
+
+    <!-- แสดงชื่อไฟล์ -->
+    <span id="file-name">ยังไม่ได้เลือกไฟล์</span>
+
+    <!-- ปุ่มอัปโหลด -->
+    <button type="button" class="upload-btn" onclick="document.getElementById('file-upload').click();">
+        <i class="fas fa-file-upload"></i> เลือกไฟล์
+    </button>
+
+    <!-- ✅ แสดงตัวอย่างสลิปที่อัปโหลด -->
+    <div class="preview-section">
+        <img id="slip-preview" src="#" alt="ตัวอย่างสลิป" style="display: none;">
+    </div>
+
+    <br>
+    <button type="submit" class="confirm-btn"><i class="fas fa-check-circle"></i> ยืนยันการชำระเงิน</button>
+</form>
+
+
+    </div>
+
+    <div class="popup-overlay" id="popup-overlay" style="display: none;">
+        <div class="popup">
+            <div class="popup-content">
+                <img src="{% static 'images/cc.png' %}" alt="Success">
+                <h2>ยืนยันการชำระเงินสำเร็จ!</h2>
+                <p>ระบบกำลังตรวจสอบข้อมูล...</p>
+                <p>กรุณารอสักครู่</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            document.getElementById("file-upload").addEventListener("change", function(event) {
+                var file = event.target.files[0];
+                var fileName = file ? file.name : "ยังไม่ได้เลือกไฟล์";
+                document.getElementById("file-name").textContent = fileName;
+            
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var imgPreview = document.getElementById("slip-preview");
+                        imgPreview.src = e.target.result;
+                        imgPreview.style.display = "block";
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // ✅ แสดงป๊อปอัพเมื่อกดยืนยันการชำระเงิน
+            document.getElementById("payment-form").addEventListener("submit", function(event) {
+                event.preventDefault(); // ป้องกันการส่งฟอร์มทันที
+
+                // ✅ แสดงป๊อปอัพ
+                document.getElementById("popup-overlay").style.display = "flex";
+                document.getElementById("popup-overlay").style.opacity = "1";
+                document.getElementById("popup-overlay").style.visibility = "visible";
+
+                // ✅ ส่งฟอร์มหลังจาก 3 วินาที
+                setTimeout(() => {
+                    this.submit();
+                }, 3000);
+            });
+        };
+    </script>
+
+        
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดต่อเรา</title>
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    {% if request.user.is_authenticated %}
+        {% include 'navbar.html' %}
+    {% else %}
+        {% include 'navbar_guest.html' %}
+    {% endif %}
+
+    <!-- Main Content -->
+    <main class="contact-container">
+
+        <div class="contact-content">
+            <!-- Map Section -->
+            <div class="map-section">
+                <h2>สถานที่ตั้ง</h2>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240.17002640346965!2d103.8019866948842!3d15.606579319517614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31179100630d49f1%3A0x95e33332bfd2b91c!2zSVNSIOC4q-C5ieC4reC4h-C5gOC4o-C4teC4ouC4meC4nuC4seC4kuC4meC4suC4l-C4seC4geC4qeC4sOC4oOC4suC4qeC4suC4reC4seC4h-C4geC4pOC4qeC4nOC5iOC4suC4meC4geC4tOC4iOC4geC4o-C4o-C4oQ!5e0!3m2!1sth!2sth!4v1734765908076!5m2!1sth!2sth"
+                    width="100%"
+                    height="300"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                ></iframe>
+                <h3>อำเภอสุวรรณภูมิ จังหวัดร้อยเอ็ด ติดจุดหาติดกับร้าน แอตมิน แวดดังสุดโต<br>
+                ทางไปโรงเรียนอนุบาลเมืองใหม่สุวรรณภูมิ</h3>
+            </div>
+    
+            <!-- Info and Image Section -->
+            <div class="info-and-image">
+                <!-- Info Section -->
+                <div class="info-section">
+                    <h2>ช่องเวลาทำการ</h2>
+                    <p>วันจันทร์ - ศุกร์: 16:30 - 18:30</p>
+                    <p>วันเสาร์ - อาทิตย์: 8:30 - 16:00</p>
+    
+                    <h2>ข้อมูลการติดต่อ</h2>
+                    <ul>
+                        <li>
+                            <i class="fas fa-phone-alt"></i> <span>T.BENTEN 063-343-2534</span>
+                        </li>
+                        <li>
+                            <i class="fab fa-line"></i> <span>ID BENSABA</span>
+                        </li>
+                        <li>
+                            <i class="fab fa-facebook"></i> <span>I say ROAR พัฒนาทักษะภาษา</span>
+                        </li>
+                    </ul>
+                </div>
+    
+                <!-- Image Section -->
+                <div class="image-section">
+                    <img src="{% static 'images/Contact.jpg' %}" alt="I say ROAR">
+                </div>
+            </div>
+        </div>
+    </main>
+    
+</body>
+</html>

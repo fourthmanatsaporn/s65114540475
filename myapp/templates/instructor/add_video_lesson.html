@@ -1,0 +1,107 @@
+{% extends 'instructor/base_instructor.html' %}
+{% load static %}
+{% block title %}เพิ่มวิดีโอสำหรับการเรียน{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/instructor/add_video_lesson.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="body-container">
+    <div class="breadcrumbs">
+        <a href="{% url 'instructor_live_courses' %}">คอร์สเรียนแบบวิดีโอ</a> > 
+        <a href="{% url 'video_course_details' course.id %}">{{ course.title }}</a> > 
+        <span>เพิ่มวิดีโอ</span>
+    </div>
+
+    <div class="add-video-container">
+        <div class="form-header">
+            <h1>เพิ่มวิดีโอสำหรับการเรียน</h1>
+            <p>คอร์ส: <strong>{{ course.title }}</strong></p>
+        </div>
+
+        <form id="videoForm" method="post" enctype="multipart/form-data" action="{% url 'add_video_lesson' course.id %}">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="title">ชื่อวิดีโอ *</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="description">คำอธิบาย *</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+        
+            <div class="form-group">
+                <label for="duration">ระยะเวลา (เช่น 10:30) *</label>
+                <input type="text" id="duration" name="duration" required>
+            </div>
+
+                <!-- ✅ ฟิลด์อัปโหลดเอกสาร -->
+    <div class="form-group">
+        <label for="document">อัปโหลดเอกสารประกอบการเรียน (PDF, DOCX) </label>
+        <input type="file" id="document" name="document" accept=".pdf,.doc,.docx">
+    </div>
+        
+            <div class="form-group">
+                <label for="video_file">อัปโหลดไฟล์วิดีโอ (MP4, AVI) *</label>
+                <input type="file" id="video_file" name="video_file" accept="video/*" required>
+            </div>
+        
+            <div class="form-buttons">
+                <a href="{% url 'video_course_details' course.id %}" class="btn-cancel">ย้อนกลับ</a>
+                <button type="submit" class="btn-submit">อัปโหลดวิดีโอ</button>
+            </div>
+        </form>
+        
+        <div id="message"></div>
+    </div>
+</div>
+
+<script>
+document.getElementById("videoForm").onsubmit = function(event) {
+    event.preventDefault();
+
+    var formData = new FormData(document.getElementById("videoForm"));
+    var videoFile = document.getElementById("video_file").files[0];
+
+    // ✅ ตรวจสอบว่ามีวิดีโอหรือไม่
+    if (!videoFile) {
+        document.getElementById("message").innerHTML = "<p style='color:red;'>⚠️ กรุณาอัปโหลดวิดีโอ</p>";
+        return;
+    }
+
+    // ✅ ตรวจสอบขนาดไฟล์วิดีโอ (ไม่เกิน 500MB)
+    if (videoFile.size > 500 * 1024 * 1024) {
+        document.getElementById("message").innerHTML = "<p style='color:red;'>❌ ไฟล์วิดีโอใหญ่เกินไป (สูงสุด 500MB)</p>";
+        return;
+    }
+
+    fetch("{% url 'add_video_lesson' course.id %}", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            document.getElementById("message").innerHTML = "<p style='color:red;'>" + data.error + "</p>";
+        } else {
+            document.getElementById("message").innerHTML = "<p style='color:green;'>✅ " + data.message + "</p>";
+            setTimeout(function() {
+                window.location.href = "{% url 'instructor_live_courses' %}"; // ✅ Redirect หลังจากอัปโหลดสำเร็จ
+            }, 2000); // ✅ รอ 2 วินาที ก่อน Redirect
+        }
+    })
+    .catch(error => {
+        document.getElementById("message").innerHTML = "<p style='color:red;'>❌ เกิดข้อผิดพลาด กรุณาลองใหม่</p>";
+        console.error("Error:", error);
+    });
+};
+
+
+</script>
+{% endblock %}

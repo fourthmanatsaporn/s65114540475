@@ -1,0 +1,236 @@
+/* ✅ ตั้งค่าพื้นฐานของหน้า */
+body {
+    font-family: "Mali", serif;
+    background: linear-gradient(135deg, #FCE4EC, #E1BEE7);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ✅ กล่องแก้ไขโปรไฟล์ */
+.edit-profile-container {
+    background-color: #FFFFFF;
+    width: 90%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    position: relative;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ✅ ปุ่มย้อนกลับ */
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: linear-gradient(135deg, #FF6B6B, #FFD93D);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+
+.back-button i {
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+/* ✅ หัวข้อ */
+.title {
+    font-size: 26px;
+    color: #8A4FFF;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* ✅ ฟอร์มแก้ไข */
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ✅ ช่องกรอกข้อมูล */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    text-align: left;
+    
+}
+
+label {
+    font-size: 14px;
+    color: #4A4A4A;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #8A4FFF;
+    outline: none;
+}
+
+/* ✅ ปุ่มบันทึก */
+.save-button {
+    background: linear-gradient(135deg, #8A4FFF, #613E74);
+    color: #FFFFFF;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.save-button:hover {
+    background: linear-gradient(135deg, #7A42D6, #492D6E);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(138, 79, 255, 0.3);
+}
+
+/* ✅ ภาพโปรไฟล์ */
+.profile-img-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #FF6B6B, #FFD93D, #8A4FFF);
+    position: relative;
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+/* ✅ เอฟเฟกต์ hover */
+.profile-img-container:hover {
+    transform: scale(1.05);
+}
+
+/* ✅ ปรับขนาดภาพโปรไฟล์ */
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* ✅ เอฟเฟกต์ Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ✅ ปุ่มพื้นฐาน */
+button {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* ✅ ปุ่มเปลี่ยนแปลงรหัสผ่าน */
+.change-password-btn {
+    background: linear-gradient(135deg, #FF6B6B, #FF9A9E);
+    color: white;
+    margin-bottom: 10px;
+}
+
+.change-password-btn:hover {
+    background: linear-gradient(135deg, #FF5252, #FF7A7A);
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
+}
+
+/* ✅ ปุ่มบันทึก */
+.save-btn {
+    background: linear-gradient(135deg, #8A4FFF, #613E74);
+    color: white;
+}
+
+.save-btn:hover {
+    background: linear-gradient(135deg, #7A42D6, #492D6E);
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(138, 79, 255, 0.4);
+}
+
+/* ✅ เอฟเฟกต์กดปุ่ม */
+button:active {
+    transform: scale(0.97);
+}
+
+/* ✅ ปรับสไตล์กล่องอัปโหลด */
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    border: 2px dashed #8A4FFF;
+    border-radius: 12px;
+    background: rgba(138, 79, 255, 0.05);
+    cursor: pointer;
+    transition: border-color 0.3s ease, background 0.3s ease;
+    text-align: center;
+}
+
+/* ✅ เอฟเฟกต์ Hover */
+.upload-container:hover {
+    border-color: #613E74;
+    background: rgba(138, 79, 255, 0.1);
+}
+
+/* ✅ ไอคอนอัปโหลด */
+.upload-icon {
+    font-size: 40px;
+    color: #8A4FFF;
+}
+
+/* ✅ ข้อความแนะแนว */
+.upload-text {
+    font-size: 14px;
+    color: #333;
+}
+
+/* ✅ ซ่อน Input เดิม */
+#profilePictureInput {
+    display: none;
+}

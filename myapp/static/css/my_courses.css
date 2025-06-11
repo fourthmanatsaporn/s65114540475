@@ -1,0 +1,362 @@
+/* ✅ ปรับแต่ง layout ของ container */
+
+
+body {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    padding-bottom: 20px; 
+    z-index: 10;
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container1 {
+    max-width: 1400px;
+    margin: 0 auto;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #FFF7F2;
+}
+
+/* ✅ สไตล์ปุ่มเปลี่ยนหน้า */
+
+
+.tab-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    background-color: #ccc;
+    margin: 0 5px;
+}
+
+.tab-btn.active {
+    background-color: #0080ff;
+}
+
+.tab-btn:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* ✅ ปรับแต่ง Card ของคอร์ส */
+.course-item {
+    background-color: #fff0e2;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    min-width: 260px;
+    max-width: 300px;
+    margin: auto;
+    transition: transform 0.3s ease;
+    border: 1px solid #FF7D0C;
+
+}
+
+/* ✅ ปรับแต่ง Card ของคอร์ส */
+.course-item1 {
+    background-color: #f4e7fb;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    min-width: 260px;
+    max-width: 300px;
+    margin: auto;
+    transition: transform 0.3s ease;
+    border: 1px solid #613E74;
+
+}.course-item1:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.course-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ✅ สไตล์ของรูปคอร์ส */
+.course-thumbnail img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #eee;
+}
+
+/* ✅ ข้อมูลของคอร์ส */
+.course-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.course-info h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #FF7D0C;
+}
+
+.course-info p {
+    font-size: 10px;
+    color: #613E74;
+}
+
+/* ✅ ปรับแต่งราคาของคอร์ส */
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FF7D0C;
+    margin: 10px 0;
+}
+
+
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 100px;
+
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    background-color: #ccc;
+    margin: 0 10px;
+}
+
+.tab-btn.active {
+    background-color: #FF7D0C;
+}
+
+.tab-btn:hover {
+    background-color: #18A9E4;
+}
+.btn-orange{
+display: inline-block;
+padding: 13px 45px;
+background-color: #18A9E4;
+color: #fff;
+font-size: 14px;
+border-radius: 20px;
+text-decoration: none;
+transition: background-color 0.3s;
+}
+.page-title{
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #613E74;
+}
+
+
+/* ✅ ปุ่มยกเลิกการจอง */
+.btn-cancel {
+    background-color: #F44336; /* สีแดง */
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-cancel:hover {
+    background-color: #D32F2F;
+    transform: scale(1.05);
+}
+
+/* ✅ ปุ่มที่ถูกกด (active) */
+.btn-cancel:active {
+    transform: scale(0.95);
+}
+
+
+
+
+
+/* ปุ่มที่แสดงสถานะ "รอการตรวจสอบ" */
+.btn-orange1 {
+    background-color: #FF7D0C;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+/* ปุ่มที่แสดงสถานะ "ปฏิเสธการชำระเงิน" */
+.btn-red1 {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+.two-columns {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+
+.column {
+    flex: 1 1 50%;
+    background-color: #fdfdfd;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);    
+    width: 50%;
+    max-width: 800px;
+}
+
+.column h2 {
+    font-size: 20px;
+    color: #ff6b6b;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.column .courses-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; /* ห้ามขึ้นบรรทัดใหม่ */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding-bottom: 10px;
+}
+
+.column .courses-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.column .courses-grid::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.column {
+    flex: 1 1 50%;
+    background-color: #fdfdfd;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);    
+    width: 50%;
+    max-width: 800px;
+}
+
+.column h2 {
+    font-size: 20px;
+    color: #ff6b6b;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.column .courses-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; /* ห้ามขึ้นบรรทัดใหม่ */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding-bottom: 10px;
+}
+
+.column .courses-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.column .courses-grid::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.slider-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.slider-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+    scrollbar-width: none; /* Firefox */
+}
+
+.slider-track::-webkit-scrollbar {
+    display: none; /* Chrome */
+}
+
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #FF7D0C;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.prev-btn {
+    left: -10px;
+}
+
+.next-btn {
+    right: -10px;
+}
+
+.slide-btn:hover {
+    background-color: #E65C00;
+}
+
+
+
+@media (max-width: 768px) {
+    .two-columns {
+        flex-direction: column;
+    }
+
+    .column {
+        width: 100%;
+    }
+}

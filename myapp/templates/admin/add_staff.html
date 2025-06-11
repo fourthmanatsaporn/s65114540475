@@ -1,0 +1,39 @@
+{% extends 'admin/base_admin.html' %}
+{% load static %}
+
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin/add_staff.css' %}">
+{% endblock %}
+{% block title %}เพิ่มโปรไฟล์ผู้สอน{% endblock %}
+
+{% block content %}
+
+<body class="body-wrapper">
+    <div class="dashboard-container">
+        <h2>เพิ่มโปรไฟล์ผู้สอน</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>ชื่อที่ใช้แสดง</label>
+                <input type="text" name="display_name" placeholder="ชื่อที่ใช้แสดง" required>
+            </div>
+
+            <div class="form-group">
+                <label>วิชาที่สอน</label>
+                <input type="text" name="subject" placeholder="วิชาที่สอน" required>
+            </div>
+
+            <div class="form-group">
+                <label>อัปโหลดรูปภาพ</label>
+                <input type="file" name="image" accept="image/*">
+            </div>
+
+            <button type="submit" class="btn-save">บันทึก</button>
+            <a href="{% url 'staff_list' %}" class="btn-cancel">ยกเลิก</a>
+        </form>
+    </div>
+</body>
+{% endblock %}

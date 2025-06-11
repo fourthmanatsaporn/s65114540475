@@ -1,0 +1,281 @@
+.body-wrapper {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2; /* สีพื้นหลัง */
+    margin: 10;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* จัดให้อยู่กึ่งกลางแนวนอน */
+    align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    min-height: 100vh; /* ให้ความสูงเท่าหน้าจอ */
+    margin-left: 320px; /* เพิ่มระยะห่างจากด้านซ้าย */
+
+}
+
+.dashboard-container {
+    font-family: "Mali", serif;
+    width: 92%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    height: auto;
+}
+/* หัวข้อ */
+.dashboard-title {
+    font-size: 2rem;
+    color: #4A148C;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: 30px;
+}
+
+/* =================== ตัวเลือกฟิลเตอร์ =================== */
+.filter-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    background: #EEE4FF;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.filter-section label {
+    font-weight: bold;
+    color: #6A1B9A;
+}
+
+.filter-section select {
+    padding: 8px 12px;
+    border: 1px solid #6A1B9A;
+    border-radius: 5px;
+    background: #fff;
+    color: #4A148C;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.filter-section select:focus {
+    outline: none;
+    border: 2px solid #4A148C;
+}
+
+/* =================== กล่องสรุปรายได้ =================== */
+.summary-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-box {
+    background: linear-gradient(to right, #7E57C2, #AB47BC);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    flex: 1 1 250px;
+    color: #fff;
+}
+
+.summary-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.summary-box p {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* =================== ตารางข้อมูลคอร์ส =================== */
+.course-table-section {
+    background: #FFF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.course-table-section h3 {
+    font-size: 1.5rem;
+    color: #4A148C;
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #7E57C2;
+    color: #fff;
+    font-weight: bold;
+}
+
+td {
+    color: #333;
+}
+
+/* =================== ปุ่มค้นหาและเปลี่ยนหน้าของ DataTables =================== */
+.dataTables_wrapper {
+    margin-top: 20px;
+}
+
+.dataTables_filter input {
+    border: 1px solid #6A1B9A;
+    border-radius: 5px;
+    padding: 6px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.dataTables_paginate .paginate_button {
+    background: #7E57C2;
+    color: white !important;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+.dataTables_paginate .paginate_button:hover {
+    background: #AB47BC;
+}
+
+/* =================== ส่วนแสดงกราฟ =================== */
+.graph-section {
+    background: #FFF;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    text-align: center;
+    
+}
+
+.graph-section h3 {
+    font-size: 1.4rem;
+    color: #4A148C;
+    margin-bottom: 15px;
+
+}
+/* ✅ ปรับให้การ์ดอยู่กึ่งกลางและเรียงเป็นแนวนอน */
+.summary-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* ✅ ปรับขนาดของการ์ด */
+.summary-box {
+    background: linear-gradient(to right, #7E57C2, #AB47BC);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 220px; /* คงที่ */
+    min-width: 180px;
+    color: #fff;
+}
+
+/* ✅ สีของแต่ละประเภท */
+.total {
+    background: #424242;
+    border-left: 5px solid #FFD700;
+}
+
+.booking {
+    background: #1E88E5;
+    border-left: 5px solid #1565C0;
+}
+
+.video {
+    background: #43A047;
+    border-left: 5px solid #2E7D32;
+}
+
+.total-booking {
+    background: #F57C00;
+    border-left: 5px solid #E65100;
+}
+
+.total-video {
+    background: #D32F2F;
+    border-left: 5px solid #B71C1C;
+}
+
+/* ✅ จัดวางการ์ดแสดงจำนวนคอร์ส */
+.summary-container-1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+
+}
+
+/* ✅ ปรับให้คอร์สจองและคอร์สวิดีโออยู่ในแนวนอน */
+.summary-box-1 {
+    background: #FFF7F2;
+    border-radius: 12px;
+    padding: 20px;
+    width: 50%;
+    min-width: 400px;
+ 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* ✅ ไอคอน */
+.icon {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.booking-icon {
+    color: #FF9800;
+}
+
+.video-icon {
+    color: #673AB7;
+}
+
+/* ✅ การวางข้อมูลภายในการ์ด */
+.summary-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ✅ เส้นแบ่งกลาง */
+.divider {
+    width: 1px;
+    background: #E0E0E0;
+    height: 50px;
+}
+
+/* ✅ ปรับให้แสดงเป็นแนวตั้งเมื่อหน้าจอเล็ก */
+@media (max-width: 768px) {
+    .summary-box {
+        width: 45%;
+    }
+    .summary-box-1 {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .summary-box {
+        width: 90%;
+    }
+}

@@ -1,0 +1,108 @@
+.body-wrapper {
+    margin: 0; /* ลบระยะขอบรอบด้าน */
+    padding: 0; /* ลบระยะ padding รอบด้าน */
+    font-family: 'Arial', sans-serif; /* ตั้งฟอนต์มาตรฐาน */
+    font-size: 16px; /* ขนาดตัวอักษรพื้นฐาน */
+    color: #333; /* สีข้อความพื้นฐาน */
+    background-color: #FFF7F2; /* สีพื้นหลัง */
+    line-height: 1.6; /* ความสูงของบรรทัดให้ดูอ่านง่าย */
+}
+
+.dashboard-container {
+    padding: 10px;
+    background-color: #ffffff;
+    min-height: 100vh; /* ให้เนื้อหาเต็มหน้าจอแนวตั้ง */
+    width: 79%; /* ปรับความกว้างให้เหมาะสม */
+/* จัดให้อยู่ตรงกลาง */
+    border-radius: 10px; /* เพิ่มขอบมน */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเพื่อความสวยงาม */
+    margin-left: 350px;
+    margin-top: 130px; /* เพิ่มระยะห่างจากขอบด้านบน */
+}
+
+.dashboard-title {
+    font-size: 1.8rem;
+    color: #663399;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.order-table th, 
+.order-table td {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-table th {
+    background-color: #ff5733;
+    color: white;
+    font-weight: bold;
+}
+
+.order-table tr:hover {
+    background-color: #f7f7f7;
+}
+
+.slip-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.text-center {
+    font-size: 1rem;
+    color: #666;
+}
+.sales-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.summary-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    width: 48%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.summary-box.active {
+    background-color: #ffc0cb; /* สีชมพู */
+}
+
+.summary-box:hover {
+    background-color: #f8d7da;
+}
+.btn-view {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.btn-view:hover {
+    background-color: #0056b3;
+}

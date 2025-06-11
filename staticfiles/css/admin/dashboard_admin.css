@@ -1,0 +1,82 @@
+.body-wrapper {
+    background-color: #FFF7F2; /* สีพื้นหลัง */
+    margin: 10;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* จัดให้อยู่กึ่งกลางแนวนอน */
+    align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    min-height: 100vh; /* ให้ความสูงเท่าหน้าจอ */
+    margin-left: 320px; /* เพิ่มระยะห่างจากด้านซ้าย */
+
+}
+
+.dashboard-container {
+    width: 92%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    height: auto;
+}
+
+.dashboard-title {
+    font-size: 2.5rem;
+    color: #663399;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.summary-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.summary-box {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1 1 calc(25% - 20px);
+    min-width: 200px; /* กำหนดความกว้างขั้นต่ำ */
+}
+
+.summary-box h3 {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.summary-box p {
+    font-size: 1.8rem;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.chart-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.chart-box {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.chart-box h3 {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+}

@@ -1,0 +1,312 @@
+body {
+    margin: 0; /* ลบระยะขอบรอบด้าน */
+    padding: 0; /* ลบระยะ padding รอบด้าน */
+    font-family: 'Arial', sans-serif; /* ตั้งฟอนต์มาตรฐาน */
+    font-size: 16px; /* ขนาดตัวอักษรพื้นฐาน */
+    color: #333; /* สีข้อความพื้นฐาน */
+    background-color: #FFF7F2; /* สีพื้นหลัง */
+    line-height: 1.6; /* ความสูงของบรรทัดให้ดูอ่านง่าย */
+}
+.dashboard-container {
+    padding: 10px;
+    background-color: #ffffff;
+    min-height: 50vh; /* ให้เนื้อหาเต็มหน้าจอแนวตั้ง */
+    width: 75%; /* ปรับความกว้างให้เหมาะสม */
+/* จัดให้อยู่ตรงกลาง */
+    border-radius: 10px; /* เพิ่มขอบมน */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเพื่อความสวยงาม */
+    margin-left: 350px;
+    margin-top: 130px; /* เพิ่มระยะห่างจากขอบด้านบน */
+
+ 
+}
+
+.dashboard-title {
+    font-size: 2rem; /* เพิ่มขนาดหัวเรื่อง */
+    color: #663399;
+    text-align: center;
+    margin-bottom: 20px; /* เพิ่มระยะห่างด้านล่าง */
+    font-weight: bold; /* เน้นตัวอักษร */
+}
+
+.content-wrapper {
+    overflow-x: auto;
+}
+
+
+
+/* ปรับคอลัมน์ "ช่องทางการชำระเงิน" */
+.course-table th:nth-child(7),
+.course-table td:nth-child(7) {
+    width: 20%; /* ความกว้างที่เหมาะสม */
+    text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+    vertical-align: middle; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+}
+
+/* ปรับคอลัมน์ "การจัดการ" */
+/* ปรับคอลัมน์ "การจัดการ" */
+.course-table th:nth-child(8),
+.course-table td:nth-child(8) {
+    width: 10%; /* กำหนดความกว้างของคอลัมน์ */
+    text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+    vertical-align: middle; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+}
+
+.course-table td {
+    vertical-align: middle; /* จัดข้อความให้อยู่กลางแนวตั้ง */
+}
+
+/* เพิ่มเงื่อนไขให้ปุ่มในคอลัมน์ "การจัดการ" อยู่ตรงกลาง */
+/* ปุ่มในคอลัมน์ "การจัดการ" */
+
+.action-buttons {
+    display: flex;
+    flex-direction: column; /* จัดปุ่มในแนวตั้ง */
+    align-items: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+    justify-content: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    gap: 10px; /* ระยะห่างระหว่างปุ่ม */
+    height: 100%; /* ปรับให้ปุ่มเต็มความสูงของเซลล์ */
+}
+
+/* ปุ่ม */
+.btn {
+    padding: 10px 20px; /* ขนาดปุ่ม */
+    border-radius: 5px; /* ขอบมน */
+    font-size: 14px; /* ขนาดข้อความในปุ่ม */
+    font-weight: bold; /* ตัวหนา */
+    cursor: pointer;
+    text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+    transition: all 0.3s ease;
+    width: 100%; /* ปุ่มเต็มความกว้างของคอลัมน์ */
+}
+
+
+
+.course-table th {
+    background-color: #ff5733;
+    color: #fff;
+}
+
+.course-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.course-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.course-table img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+textarea {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Buttons */
+
+.btn-revision {body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    color: #333;
+    background-color: #FFF7F2;
+    line-height: 1.6;
+}
+
+.dashboard-container {
+    padding: 20px;
+    background-color: #ffffff;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 130px auto; /* Center and add spacing */
+    min-height: 60vh; /* Ensure minimum height for content */
+}
+
+.dashboard-title {
+    font-size: 2rem;
+    color: #663399;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+.course-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.course-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.course-table img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    object-fit: cover;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+/* Buttons */
+
+
+/* ปุ่มสีต่างๆ */
+.btn-revision {
+    background-color: #ffc107;
+    color: white;
+}
+
+.btn-revision:hover {
+    background-color: #e0a800;
+}
+
+.btn-approve {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-approve:hover {
+    background-color: #218838;
+}
+
+.btn-cancel {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #c82333;
+}
+.btn-upload {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-upload:hover {
+    background-color: #0056b3;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.btn-revision:hover {
+    background-color: #e0a800;
+}
+
+.btn-approve {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-approve:hover {
+    background-color: #218838;
+}
+
+.btn-cancel {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-cancel:hover {
+    background-color: #c82333;
+}

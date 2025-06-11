@@ -1,0 +1,123 @@
+
+body {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    padding-bottom: 20px; 
+    z-index: 10;
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.courses-page .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #FFF7F2;
+}
+
+/* Page Title */
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #FF5733;
+    margin-bottom: 20px;
+}
+
+/* Grid Layout */
+.courses-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px; /* ขยายความกว้าง */
+}
+
+/* Course Item */
+.course-item {
+    display: flex;
+    gap: 100px;
+    background: #ffffff; /* พื้นหลังสีขาว */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.course-item:hover {
+    transform: translateY(-5px);
+}
+
+.course-thumbnail img {
+    width: 200px; /* ขยายภาพ */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.course-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.course-info h3 {
+    font-size: 1.5rem;
+    color: #0C86B8;
+    margin-bottom: 10px;
+}
+
+.course-info p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.course-buttons {
+    display: flex;
+    flex-direction: column; /* จัดเรียงปุ่มในแนวตั้ง */
+    gap: 10px; /* ระยะห่างระหว่างปุ่ม */
+    
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* ปรับให้ปุ่มเต็มความกว้างในกรณีแนวตั้ง */
+    max-width: 250px; /* จำกัดความกว้างสูงสุดของปุ่ม */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn.blue {
+    background-color: #3498db;
+    border-radius: 10px;
+    
+}
+
+.btn.blue:hover {
+    background-color: #2874a6;
+}
+
+.btn.orange {
+    background-color: #e67e22;
+    border-radius: 10px;
+}
+
+.btn.orange:hover {
+    background-color: #d35400;
+}

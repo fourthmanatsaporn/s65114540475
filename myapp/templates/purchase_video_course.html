@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ซื้อคอร์สเรียนแบบวิดีโอ{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/purchase_course.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="purchase-container">
+    <h1 class="purchase-title">ชำระเงินสำหรับคอร์สเรียน</h1>
+
+    <div class="course-info">
+        <img src="{{ course.image.url }}" alt="รูปคอร์ส" class="course-image">
+        <h2>{{ course.title }}</h2>
+        <p>{{ course.description }}</p>
+        <p class="course-price">ราคา: <strong>{{ course.price }} บาท</strong></p>
+    </div>
+
+    <div class="payment-section">
+        <h3>1. สแกนคิวอาร์โค้ดเพื่อชำระเงิน</h3>
+        <div class="qr-code">
+            <img src="{{ course.payment_qr.url }}" alt="QR Code การชำระเงิน">
+        </div>
+
+        <h3>2. อัปโหลดสลิปการโอนเงิน</h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="payment_slip">เลือกไฟล์สลิป:</label>
+            <input type="file" name="payment_slip" id="payment_slip" accept="image/*" required>
+
+            <button type="submit" class="btn-submit">ยืนยันการซื้อ</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

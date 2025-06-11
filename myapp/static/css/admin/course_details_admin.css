@@ -1,0 +1,216 @@
+
+body {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    padding-bottom: 20px; 
+    z-index: 10;
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.courses-page .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #FFF7F2;
+}
+
+
+.course-details-page {
+    font-family: "Mali", serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #FFF7F2;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 70px; 
+}
+
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #007bff;
+}
+
+.course-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.course-details-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+
+    
+}
+
+.course-images {
+    display: flex; /* ใช้ Flexbox */
+    justify-content: center; /* จัดให้อยู่ตรงกลางในแนวนอน */
+    align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+    gap: 40px; /* เพิ่มระยะห่างระหว่างแต่ละรูป */
+    margin-top: 20px; /* เพิ่มระยะห่างด้านบน */
+}
+
+
+
+.course-images .image-center img {
+    width: auto; /* ให้ปรับตามสัดส่วน */
+    max-width: 400px; /* กำหนดขนาดความกว้างสูงสุดสำหรับรูปตรงกลาง */
+    height: auto; /* ปรับสัดส่วนอัตโนมัติ */
+    max-height: 400px; /* ขนาดความสูงสูงสุดสำหรับรูปตรงกลาง */
+    border-radius: 10px; /* เพิ่มขอบมน */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+    object-fit: contain; /* ให้ภาพไม่ถูกตัด */
+}
+
+.course-images .image-left img,
+.course-images .image-right img {
+    width: auto; /* ให้ปรับตามสัดส่วน */
+    max-width: 300px; /* ขนาดความกว้างสูงสุด */
+    height: auto; /* ปรับสัดส่วนอัตโนมัติ */
+    max-height: 300px; /* ขนาดความสูงสูงสุด */
+    border-radius: 10px; /* เพิ่มขอบมน */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+    object-fit: contain; /* ให้ภาพไม่ถูกตัด */
+    margin: 0 20px; /* เพิ่มระยะห่างซ้ายและขวา */
+}
+
+.course-description {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+.additional-images {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.extra-images-grid {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+.extra-image img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo1 img{
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+
+}
+
+
+/* เส้นใต้แบบโดดเด่น */
+.course-title-no1::after {
+    content: "";
+    display: block;
+    width: 50%; /* ความยาวของเส้นใต้ */
+    height: 4px; /* ความหนาของเส้น */
+    background-color: #FFC300; /* สีของเส้นใต้ */
+    margin: 10px auto 0; /* จัดให้อยู่กลาง และเพิ่มระยะห่างด้านบน */
+    border-radius: 5px; /* ขอบมนของเส้น */
+}
+
+/* เพิ่มเอฟเฟกต์เงา */
+.course-title-no1 {
+
+    font-size: 1.5rem; /* ขนาดตัวอักษร */
+    font-weight: bold; /* ตัวหนา */
+    color: #FFFFFF; /* สีตัวอักษรขาว */
+    background-color: #FF7D0C; /* สีพื้นหลังส้ม */
+    padding: 10px 20px; /* เพิ่มพื้นที่ภายใน */
+    border-radius: 20px; /* ขอบมน */
+    text-align: center; /* จัดให้อยู่กลาง */
+    display: inline-block; /* ให้เป็นบล็อกที่กว้างเท่ากับเนื้อหา */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* เพิ่มเงา */
+    transition: all 0.3s ease; /* เอฟเฟกต์เมื่อ hover */
+    cursor: pointer; /* เปลี่ยนเมาส์เป็นมือ */
+
+    
+}
+
+.course-title-no1:hover {
+    background-color: #FF6F3C; /* สีเข้มขึ้นเมื่อ hover */
+    transform: translateY(-3px); /* เลื่อนขึ้นเล็กน้อย */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* เพิ่มเงา */
+}
+
+
+
+.course-list {
+    display: flex;
+    justify-content: left;
+    gap: 20px;
+}
+
+.course-item {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+.course-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.course-item img {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.course-item h3 {
+    font-size: 18px;
+    color: #4A148C;
+    margin-bottom: 10px;
+}
+
+.course-item p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.btn-course-1 {
+    display: inline-block;
+    padding: 13px 100px;
+    background-color: #FF7D0C;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}

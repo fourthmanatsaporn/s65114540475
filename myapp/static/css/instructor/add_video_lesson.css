@@ -1,0 +1,138 @@
+/* General Styles */
+.body-container {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2; /* สีพื้นหลัง */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* จัดให้อยู่กึ่งกลางแนวนอน */
+    align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    min-height: 100vh; /* ให้ความสูงเท่าหน้าจอ */
+}
+/* Form Container */
+.add-video-container {
+    width: 100%; /* ใช้พื้นที่ทั้งหมด */
+    background-color: #ffffff; /* สีพื้นหลัง */
+    border-radius: 10px; /* ขอบมน */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+    max-width: 800px; /* เพิ่มความกว้าง */
+    padding: 40px; /* เพิ่ม padding เพื่อขยาย */
+    margin: 120px auto 0; /* เพิ่ม margin-top: 20px */
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.breadcrumbs a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.breadcrumbs span {
+    color: #666;
+}
+
+/* ส่วนหัวของฟอร์ม */
+.form-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.form-header p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* ฟอร์ม */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-group textarea {
+    resize: none;
+    height: 100px;
+}
+
+/* ปุ่ม */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-cancel:hover {
+    background-color: #c0392b;
+}
+
+.btn-submit {
+    background-color: #27ae60;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #219150;
+}
+
+/* ข้อความแจ้งเตือน */
+#message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+#message p {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#message p[style*="color:red"] {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+#message p[style*="color:green"] {
+    background-color: #d4edda;
+    color: #155724;
+}

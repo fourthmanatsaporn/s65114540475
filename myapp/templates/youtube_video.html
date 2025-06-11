@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Details</title>
+</head>
+<body>
+    <h2>ค้นหาข้อมูลวิดีโอจาก YouTube</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="video_id">YouTube Video ID:</label>
+        <input type="text" name="video_id" required>
+        <button type="submit">ค้นหา</button>
+    </form>
+
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    {% if video_data %}
+        <h3>ข้อมูลวิดีโอ</h3>
+        <p><strong>ชื่อวิดีโอ:</strong> {{ video_data.snippet.title }}</p>
+        <p><strong>ช่อง:</strong> {{ video_data.snippet.channelTitle }}</p>
+        <p><strong>เผยแพร่เมื่อ:</strong> {{ video_data.snippet.publishedAt }}</p>
+        <p><strong>จำนวนวิว:</strong> {{ video_data.statistics.viewCount }}</p>
+        <p><strong>จำนวนไลก์:</strong> {{ video_data.statistics.likeCount }}</p>
+
+        <h3>วิดีโอตัวอย่าง</h3>
+        <iframe width="560" height="315" 
+                src="https://www.youtube.com/embed/{{ video_data.id }}" 
+                frameborder="0" allowfullscreen>
+        </iframe>
+    {% endif %}
+</body>
+</html>

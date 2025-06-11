@@ -1,0 +1,129 @@
+{% extends 'admin/base_admin.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin/dashboard_admin.css' %}">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="body-wrapper">
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">Dashboard</h1>
+<!-- ✅ ส่วนแสดงข้อมูลสรุปด้านบน (ไม่เปลี่ยนแปลงตามตัวกรอง) -->
+<div class="summary-container">
+    <div class="summary-box total">
+        <h3>รายได้รวมทั้งหมด</h3>
+        <p>{{ total_income }} ฿</p>
+    </div>
+    <div class="summary-box booking">
+        <h3>รายได้จากคอร์สจอง</h3>
+        <p>{{ booking_income }} ฿</p>
+    </div>
+    <div class="summary-box video">
+        <h3>รายได้จากคอร์สวิดีโอ</h3>
+        <p>{{ video_income }} ฿</p>
+    </div>
+</div>
+
+<!-- ✅ การ์ดแสดงจำนวนคอร์ส -->
+<div class="summary-container-1">
+    <div class="summary-box-1">
+        <h3>คอร์สทั้งหมด</h3>
+        <div class="summary-content">
+            <div class="summary-item">
+                <i class="fas fa-book-open icon booking-icon"></i>
+                <div>
+                    <p class="summary-value">{{ total_booking_courses }}</p>
+                    <p class="summary-label">คอร์สจองที่มีการจอง</p>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="summary-item">
+                <i class="fas fa-video icon video-icon"></i>
+                <div>
+                    <p class="summary-value">{{ total_video_courses }}</p>
+                    <p class="summary-label">คอร์สวิดีโอที่ถูกซื้อ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ✅ ส่วนฟิลเตอร์ -->
+<div class="filter-section">
+    <form method="GET" action="{% url 'admin_dashboard' %}">
+        <label for="filter">ช่วงเวลา:</label>
+        <select name="filter" id="filter" onchange="this.form.submit()">
+            <option value="all" {% if filter_type == "all" %}selected{% endif %}>ทั้งหมด</option>
+            <option value="daily" {% if filter_type == "daily" %}selected{% endif %}>รายวัน</option>
+            <option value="monthly" {% if filter_type == "monthly" %}selected{% endif %}>รายเดือน</option>
+        </select>
+
+        <label for="course_type">ประเภทคอร์ส:</label>
+        <select name="course_type" id="course_type" onchange="this.form.submit()">
+            <option value="all" {% if course_type == "all" %}selected{% endif %}>ทุกคอร์ส</option>
+            <option value="video" {% if course_type == "video" %}selected{% endif %}>คอร์สวิดีโอ</option>
+            <option value="booking" {% if course_type == "booking" %}selected{% endif %}>คอร์สจอง</option>
+        </select>
+    </form>
+</div>
+
+        <!-- ตารางข้อมูลคอร์ส -->
+        <div class="course-table-section">
+            <h3>รายได้ตามคอร์ส</h3>
+            <table id="courseTable" class="display">
+                <thead>
+                    <tr>
+                        <th>ชื่อคอร์ส</th>
+                        <th>ประเภท</th>
+                        <th>จำนวนผู้สมัคร</th>
+                        <th>รายได้ (฿)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in course_revenues %}
+                    <tr>
+                        <td>{{ course.title }}</td>
+                        <td>{{ course.type }}</td>
+                        <td>{{ course.total_students }}</td>
+                        <td>{{ course.revenue }} ฿</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+
+<!-- ✅ ส่วนกราฟ -->
+<div class="graph-section">
+    {{ graph_course_div|safe }}
+    {{ graph_monthly_div|safe }}
+</div>
+    </div>
+</div>
+<!-- DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#courseTable').DataTable({
+            "pageLength": 10,
+            "lengthChange": false,
+            "ordering": true,
+            "searching": true,
+            "info": true,
+            "language": {
+                "paginate": {
+                    "previous": "ก่อนหน้า",
+                    "next": "ถัดไป"
+                },
+                "search": "ค้นหา:",
+                "info": "แสดง _START_ ถึง _END_ จากทั้งหมด _TOTAL_ รายการ"
+            }
+        });
+    });
+</script>
+{% endblock %}

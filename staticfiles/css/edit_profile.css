@@ -1,0 +1,109 @@
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: #F5E8F7;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.edit-profile-container {
+    background-color: #FFFFFF;
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #87CEEB;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.back-button i {
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+.title {
+    text-align: center;
+    font-size: 24px;
+    color: #613E74;
+    margin-bottom: 20px;
+}
+
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+label {
+    font-size: 14px;
+    color: #4A4A4A;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+input:focus {
+    border-color: #87CEEB;
+    outline: none;
+}
+
+.password-group {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.password-group input {
+    flex-grow: 1;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #87CEEB;
+}
+
+.save-button {
+    background-color: #8A4FFF;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background-color: #7A42D6;
+}

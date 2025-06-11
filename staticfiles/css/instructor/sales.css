@@ -1,0 +1,198 @@
+/* General Styles */
+body {
+    font-family: "Mali", serif;
+    background-color: #FFF7F2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* เพิ่มเพื่อจัดเนื้อหาให้เรียงจากบนลงล่าง */
+    padding-top: 70px; /* ระยะห่างด้านบน เท่ากับความสูงของ header */
+}
+
+/* Container for Sidebar and Main Content */
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh; /* เต็มจอ */
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #ffe6f2;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+/* Logo */
+.sidebar .logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar .logo img {
+    width: 100px;
+}
+
+/* Profile Section */
+.sidebar .profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar .profile img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.sidebar .profile p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Navigation Links */
+.sidebar .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .nav-links li {
+    margin-bottom: 15px;
+}
+
+.sidebar .nav-links li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar .nav-links li.active a,
+.sidebar .nav-links li a:hover {
+    background-color: #ffb6c1;
+    color: #ff5733;
+}
+
+/* Logout Button */
+.sidebar .logout {
+    text-align: center;
+    margin-top: auto;
+}
+
+.sidebar .logout a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff5733;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px; /* ระยะห่างจาก Sidebar */
+    padding: 100px 20px 20px; /* เพิ่ม padding-top เพื่อเว้นที่ให้ Header */
+    flex: 1;
+    background-color: #FFF7F2;
+    overflow-y: auto; /* ให้เลื่อนใน Main Content */
+    min-height: calc(100vh - 100px); /* ให้มีความสูงรองรับ Footer */
+    box-sizing: border-box;
+}
+/* Page Title */
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #FF5733;
+    margin-bottom: 20px;
+}
+
+.page-title .highlight {
+    color: #3498db;
+}
+
+/* Summary Section */
+.summary-section {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.summary-card.pink {
+    background-color: #FFC0CB;
+}
+
+.summary-card.blue {
+    background-color: #3498db;
+}
+
+.summary-card h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* Sales Section */
+.sales-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-left: 90px;  /* ดันตัวเองไปชิดด้านขวา */
+    width: 90%; /* กำหนดความกว้าง */
+}
+
+.sales-section .section-title {
+    font-size: 1.8rem;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sales-table thead th {
+    background-color: #FF5733;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+.sales-table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.sales-table img {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}

@@ -1,0 +1,142 @@
+{% extends 'admin/base_admin.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin/review_booking_courses.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+{% block title %}ตรวจสอบคอร์สเรียนแบบจอง{% endblock %}
+
+{% block content %}
+
+<body class="body-wrapper">
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">ตรวจสอบคอร์สเรียนแบบจอง</h1>
+        <table class="course-table">
+            <thead>
+                <tr>
+                    <th>ตรวจสอบข้อมูล</th>
+                    <th>รูปปก</th>
+                    <th>ชื่อคอร์ส</th>
+                    <th>ราคา</th>
+                    <th>ผู้สอน</th>
+                    <th>สร้างเมื่อ</th>
+                    <th>สถานะ</th>
+                    <th>สถานะการรับสมัคร</th>
+                    <th>ช่องทางการชำระเงิน</th>
+                    <th>การจัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    
+                    <td>
+                        <a href="{% url 'course_details_admin' course.id %}" class="btn orange">ดูรายละเอียดเพิ่มเติม</a>
+                    </td>
+                    <td><img src="{{ course.image.url }}" alt="รูปปก" class="course-image"></td>
+                    <td>{{ course.title }}</td>
+                    <td>{{ course.price }} ฿</td>
+                    <td>{{ course.instructor }}</td>
+                    <td>{{ course.created_at|date:"d/m/Y H:i" }}</td>
+                    <td> <!-- เพิ่มการแสดงสถานะ -->
+                        {% if course.status == 'pending' %}
+                        <span style="color: orange;">รอการตรวจสอบ</span>
+                        {% elif course.status == 'approved' %}
+                        <span style="color: green;">อนุมัติแล้ว</span>
+                        {% elif course.status == 'revision' %}
+                        <span style="color: red;">ส่งกลับไปแก้ไข</span>
+                        {% elif course.status == 'revised' %}
+                        <span style="color: blue;">แก้ไขแล้วรอการตรวจสอบ</span>
+                        {% else %}
+                        <span style="color: gray;">สถานะไม่ทราบ</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if course.is_closed %}
+                            <span style="color: red; font-weight: bold;">ปิดรับสมัคร</span>
+                        {% else %}
+                            <span style="color: green; font-weight: bold;">เปิดรับสมัคร</span>
+                        {% endif %}
+                    </td>
+
+
+                    <td>
+                        {% if course.payment_qr %}
+                            <img src="{{ course.payment_qr.url }}" alt="QR Code" class="qr-image">
+                        {% else %}
+                            <span>ยังไม่ได้อัปโหลด QR Code</span>
+                            <form method="post" enctype="multipart/form-data" action="{% url 'upload_payment_qr' course.id %}">
+                                {% csrf_token %}
+                                <input type="file" name="payment_qr" accept="image/*" required>
+                                <button type="submit" class="btn-upload">อัปโหลด</button>
+                            </form>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        <div class="action-buttons">
+                            {% if course.payment_qr %}
+                            <a href="{% url 'approve_course' course.id %}" class="btn btn-approve">อนุมัติ</a>
+                            {% else %}
+                            <button class="btn btn-approve" disabled>อนุมัติ</button>
+                            {% endif %}
+                            <a href="javascript:void(0);" class="btn btn-revision"
+                                onclick="openModal({{ course.id }})">ส่งกลับไปแก้ไข</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8" class="text-center">ไม่มีคอร์สที่รอการตรวจสอบ</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Modal for sending back to revision -->
+    <div id="revisionModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>เพิ่มข้อความเพื่อนำกลับไปแก้ไข</h2>
+            <form id="revisionForm" method="post" action="{% url 'send_back_course' course_id=0 %}">
+                {% csrf_token %}
+                <textarea name="revision_message" id="revisionMessage" rows="5"
+                    placeholder="กรุณาใส่ข้อความที่ต้องการให้แก้ไข" required></textarea>
+                <input type="hidden" name="course_id" id="courseId">
+                <div class="modal-buttons">
+                    <button type="submit" class="btn btn-revision-submit">ส่งกลับไปแก้ไข</button>
+                    <button type="button" class="btn btn-cancel" onclick="closeModal()">ยกเลิก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // เปิด Modal
+        function openModal(courseId) {
+            console.log("Opening modal for course ID:", courseId); // Debugging
+            const modal = document.getElementById("revisionModal");
+            const courseIdInput = document.getElementById("courseId");
+
+            // ใส่ course_id ลงใน hidden input
+            courseIdInput.value = courseId;
+
+            // อัปเดต action ของฟอร์ม
+            const form = document.getElementById("revisionForm");
+            form.action = `/send-back-course/${courseId}/`;
+
+            // แสดงป๊อปอัป
+            modal.style.display = "block";
+        }
+
+        // ปิด Modal
+        function closeModal() {
+            const modal = document.getElementById("revisionModal");
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+{% endblock %}

@@ -1,0 +1,155 @@
+/* Sidebar */
+.sidebar {
+    font-family: "Mali", serif;
+    width: 300px;
+    height: calc(100vh - 100px); /* ลดความสูงลงตาม Header */
+    background-color: #ffe6f2;
+    padding: 20px 15px; /* เพิ่ม padding สำหรับเนื้อหา */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 100px; /* ระยะห่างจากด้านบน */
+    left: 0;
+    z-index: 999; /* Sidebar ต่ำกว่า Header */
+    overflow-y: auto; /* เลื่อนในกรณีที่เนื้อหาเกิน */
+    border-right: 1px solid #ddd; /* เส้นแบ่งด้านขวา */
+    font-family: "Mali", serif;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* ลบระยะห่างของ ul */
+    margin-top: 20px; /* เพิ่มระยะด้านบน */
+}
+
+.nav-links li {
+    margin-bottom: 15px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    padding: 10px 15px; /* เพิ่ม padding */
+    border-radius: 5px;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links li.active a,
+.nav-links li a:hover {
+    background-color: #ffb6c1;
+    color: #ff5733;
+}
+
+/* ตำแหน่งของปุ่มออกจากระบบที่อยู่ด้านล่างสุดของ Sidebar */
+.logout-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+}
+
+
+.logout-container {
+    position: absolute;
+    bottom: 50px; /* ปรับให้ห่างจากขอบล่าง */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+}
+
+/* ปุ่ม Logout */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: rgb(255, 0, 0);
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    transition: 0.3s;
+    margin-bottom: 10px; /* ปรับระยะขอบล่าง */
+}
+
+/* ไอคอน Logout */
+.logout-icon {
+    width: 22px;
+    height: 22px;
+}
+
+/* Hover Effect */
+.logout-btn:hover {
+    background-color: #ffffff; /* สีแดงเข้มขึ้นเมื่อ Hover */
+}
+.profile-username {
+    font-size: 16px; /* ✅ ปรับขนาดตัวอักษร */
+    color: #18A9E4; /* ✅ ปรับสีให้เหมาะกับธีม */
+    font-weight: bold;
+    white-space: nowrap; /* ✅ ป้องกันข้อความขึ้นบรรทัดใหม่ */
+}
+.profile-img-container {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 9px auto; /* จัดให้อยู่ตรงกลางและเพิ่มระยะห่างล่าง */
+    border-radius: 50%;
+    overflow: hidden; /* ป้องกันภาพล้นออกจากกรอบ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff; /* พื้นหลังวงกลม */
+
+    /* ✅ ใช้ `position: relative;` เพื่อรองรับการสร้างขอบ */
+    position: relative;
+    padding: 2.5px; /* เพิ่มระยะห่างขอบ */
+
+    /* ✅ เพิ่มเส้นขอบไล่สี */
+    background: linear-gradient(135deg, #613E74, #FF6B6B, #FFD93D);
+}
+
+/* ✅ สร้างเลเยอร์ขอบแบบไล่สี */
+.profile-img-container::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #613E74, #FF6B6B, #FFD93D); /* ไล่สี */
+}
+
+/* ✅ ปรับขนาดภาพโปรไฟล์ */
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ป้องกันภาพผิดสัดส่วน */
+    border-radius: 50%;
+    background-color: white; /* เผื่อภาพมีช่องว่าง */
+}
+
+.profile-icon {
+    display: flex;
+    flex-direction: column;  /* ✅ จัดให้อยู่เรียงในแนวตั้ง */
+    align-items: center;  /* ✅ จัดให้อยู่กึ่งกลาง */
+    text-align: center;
+    gap: 5px;  /* ✅ ปรับระยะห่างระหว่างรูปโปรไฟล์และชื่อ */
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* ✅ เอาขีดเส้นใต้ลิงก์ออก */
+    color: #BF81B2; /* ✅ ปรับสีของ username */
+    font-weight: bold;
+    gap: 20px;
+}
