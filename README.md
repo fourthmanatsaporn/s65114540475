@@ -1,7 +1,7 @@
 # วิธีการติดตั้งและรันโปรเจกต์
 
 1.ติดตั้ง Git  
-2.ติดตั้ง python-3.10.6  
+2.ติดตั้ง python  
 3.เข้า Windows PowerShell  
 ลิงก์ https://github.com/fourthmanatsaporn/ST.1  
 รัน gh repo clone fourthmanatsaporn/ST.1  
