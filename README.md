@@ -1,3 +1,5 @@
+copy log
+https://docs.google.com/document/d/1g3VwB8OWesO1mksKjdnx7U9cey11bYb9cLeKyUDtS7I/edit?usp=sharing
 # วิธีการติดตั้งและรันโปรเจกต์
 
 1.ติดตั้ง Git  
