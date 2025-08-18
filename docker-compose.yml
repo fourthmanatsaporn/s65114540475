@@ -1,14 +1,48 @@
-version: '3.8'
-
 services:
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      mysql:
+        condition: service_healthy
     ports:
       - "8000:8000"
+    networks:
+      - appnet
+    # ถ้าต้องแก้โค้ดสด ๆ ค่อยเปิดบรรทัดนี้
+    # volumes:
+    #   - .:/app
+
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
     environment:
-      - DEBUG=True
-      - DJANGO_SECRET_KEY=your-secret-key
-      - DATABASE_URL=mysql://root:dvCvnhiYxcpPfUEhmXuEupPiJvXtbeNo@roundhouse.proxy.rlwy.net:54048/railway  # เชื่อมต่อกับ Railway
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: appdb
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: apppass
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-prootpass"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      - appnet
+    # (ไม่จำเป็นต้อง expose 3306)
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"   # http://localhost:8080 (เลือก Server = mysql)
+    networks:
+      - appnet
+
+volumes:
+  mysql_data:
+
+networks:
+  appnet:

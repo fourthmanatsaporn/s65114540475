@@ -1229,7 +1229,8 @@ def login_view(request):
                 })
 
                 login(request, user)
-
+                if user.is_superuser:
+                    return redirect('admin_dashboard')
                 # ✅ ตรวจสอบว่าอยู่ในกลุ่มไหน และเปลี่ยนเส้นทางให้เหมาะสม
                 if user.groups.filter(name='Instructor').exists():
                     return redirect('instructor_sales')

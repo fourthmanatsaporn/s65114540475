@@ -1,7 +1,6 @@
 Django>=5.1
 gunicorn
 PyMySQL
-mysqlclient
 dj-database-url
 whitenoise
 djangorestframework
