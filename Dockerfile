@@ -14,7 +14,6 @@
 # # ถ้าต้องการ production ค่อยเปลี่ยนเป็น gunicorn
 # # CMD ["gunicorn","--bind","0.0.0.0:8000","myproject.wsgi:application"]
 
-
 FROM python:3.10
 ENV PYTHONUNBUFFERED=1
 WORKDIR /app
@@ -29,23 +28,26 @@ COPY . /app/
 # กัน warning ถ้าไม่มีโฟลเดอร์
 RUN mkdir -p /app/static /app/media /app/staticfiles
 
-# ค่าดีฟอลต์สำหรับสคริปต์รอ DB (ถ้ามีใน .env จะทับค่าเหล่านี้)
+# ดีฟอลต์ (จะถูก override ได้จาก .env)
 ENV DB_HOST=mysql
 ENV DB_PORT=3306
 
-# รอ MySQL -> migrate -> collectstatic -> runserver
-CMD sh -c "\
-python - <<'PY'\n\
-import os, socket, time\n\
-h=os.getenv('DB_HOST','mysql'); p=int(os.getenv('DB_PORT','3306'))\n\
-print(f'Waiting for MySQL at {h}:{p} ...')\n\
-while True:\n\
-    try:\n\
-        s=socket.create_connection((h,p), timeout=2); s.close(); break\n\
-    except Exception:\n\
-        time.sleep(2)\n\
-print('MySQL is up.')\n\
-PY\n\
- && python manage.py migrate --noinput \
- && python manage.py collectstatic --noinput \
- && python manage.py runserver 0.0.0.0:8000"
+# สร้างสคริปต์รอ MySQL ตอน build (เลี่ยงปัญหา quoting)
+RUN printf '%s\n' \
+  'import os, socket, time' \
+  'h=os.getenv("DB_HOST","mysql")' \
+  'p=int(os.getenv("DB_PORT","3306"))' \
+  'print(f"Waiting for MySQL at {h}:{p} ...")' \
+  'while True:' \
+  '    try:' \
+  '        s=socket.create_connection((h,p),2); s.close(); break' \
+  '    except Exception:' \
+  '        time.sleep(2)' \
+  'print("MySQL is up.")' \
+  > /app/wait_for_db.py
+
+# รอ DB -> migrate -> collectstatic -> runserver
+CMD sh -c "python /app/wait_for_db.py \
+  && python manage.py migrate --noinput \
+  && python manage.py collectstatic --noinput \
+  && python manage.py runserver 0.0.0.0:8000"
