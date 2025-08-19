@@ -1,17 +1,24 @@
-Django>=5.1
-gunicorn
-PyMySQL
-dj-database-url
-whitenoise
-djangorestframework
+# Core
+Django>=4.2,<5.0
+gunicorn>=21.2
+whitenoise>=6.6
+dj-database-url>=2.2
+
+# REST & Auth
+djangorestframework>=3.15
+djangorestframework-simplejwt>=5.3
 bcrypt
-djangorestframework-simplejwt
+
+# DB driver (PostgreSQL)
+psycopg2-binary>=2.9
+
+# Utilities your project uses
 plotly
 pillow
 sqlparse
 tzdata
 
-# Google API (สำหรับดึงวิดีโอจาก Google Drive)
+# Google API (ดึงวิดีโอจาก Google Drive)
 google-api-python-client
 google-auth
 google-auth-httplib2
@@ -19,4 +26,3 @@ google-auth-oauthlib
 httplib2
 uritemplate
 cryptography
-

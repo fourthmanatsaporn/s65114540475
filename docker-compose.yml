@@ -4,45 +4,43 @@ services:
     env_file:
       - .env
     depends_on:
-      mysql:
+      postgres:
         condition: service_healthy
     ports:
       - "8000:8000"
     networks:
       - appnet
-    # ถ้าต้องแก้โค้ดสด ๆ ค่อยเปิดบรรทัดนี้
-    # volumes:
-    #   - .:/app
+    restart: unless-stopped
 
-  mysql:
-    image: mysql:8.0
+  postgres:
+    image: postgres:15
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: appdb
-      MYSQL_USER: appuser
-      MYSQL_PASSWORD: apppass
+      POSTGRES_DB: appdb
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppass
     volumes:
-      - mysql_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-prootpass"]
+      test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
       interval: 5s
       timeout: 5s
       retries: 20
     networks:
       - appnet
-    # (ไม่จำเป็นต้อง expose 3306)
 
   adminer:
     image: adminer
     restart: unless-stopped
+    environment:
+      - ADMINER_DEFAULT_SERVER=postgres
     ports:
-      - "8080:8080"   # http://localhost:8080 (เลือก Server = mysql)
+      - "8080:8080"  # เปิด http://<host>:8080 แล้วเลือก System=PostgreSQL, Server=postgres
     networks:
       - appnet
 
 volumes:
-  mysql_data:
+  postgres_data:
 
 networks:
   appnet:

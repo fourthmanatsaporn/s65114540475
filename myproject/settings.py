@@ -5,8 +5,6 @@ import os
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url
-import pymysql
-pymysql.install_as_MySQLdb()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -17,10 +15,10 @@ DEBUG = os.getenv("DEBUG", "True") == "True"
 def _split_env(name, default=""):
     return [x.strip() for x in os.getenv(name, default).split(",") if x.strip()]
 
-ALLOWED_HOSTS = _split_env("ALLOWED_HOSTS", "localhost,127.0.0.1")
+ALLOWED_HOSTS = _split_env("ALLOWED_HOSTS", "localhost,127.0.0.1,202.28.49.122")
 CSRF_TRUSTED_ORIGINS = _split_env(
     "CSRF_TRUSTED_ORIGINS",
-    "http://localhost:8000,http://127.0.0.1:8000"
+    "http://localhost:8000,http://127.0.0.1:8000,http://202.28.49.122,http://202.28.49.122:8000,https://202.28.49.122"
 )
 
 # ---------- Apps ----------
@@ -79,10 +77,10 @@ TEMPLATES = [{
 WSGI_APPLICATION = "myproject.wsgi.application"
 
 # ---------- Database ----------
-# DATABASE_URL เช่น: mysql://appuser:apppass@mysql:3306/appdb
+# ตัวอย่าง DATABASE_URL: postgres://appuser:apppass@postgres:5432/appdb
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL", "mysql://appuser:apppass@mysql:3306/appdb"),
+        default=os.getenv("DATABASE_URL", "postgres://appuser:apppass@postgres:5432/appdb"),
         conn_max_age=600,
         ssl_require=False,
     )
@@ -104,7 +102,7 @@ PASSWORD_HASHERS = [
 ]
 
 LANGUAGE_CODE = "en-us"
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Bangkok"
 USE_I18N = True
 USE_TZ = True
 
@@ -117,9 +115,18 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
+# ---------- Security for production ----------
+if not DEBUG:
+    SESSION_COOKIE_SECURE = False   # ตั้ง True ถ้าเข้าผ่าน HTTPS แท้
+    CSRF_COOKIE_SECURE = False      # ตั้ง True ถ้าเข้าผ่าน HTTPS แท้
+    SECURE_HSTS_SECONDS = 0         # เปิด HSTS เฉพาะเมื่อมี HTTPS
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+    SECURE_HSTS_PRELOAD = False
+
+# ---------- Email (ตามเดิม) ----------
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'isrno.100@gmail.com'  # อีเมลที่คุณใช้ส่ง 
-EMAIL_HOST_PASSWORD = 'jljjkcaatennnznn'  # รหัสผ่านของอีเมล
+EMAIL_HOST_USER = 'isrno.100@gmail.com'
+EMAIL_HOST_PASSWORD = 'jljjkcaatennnznn'
