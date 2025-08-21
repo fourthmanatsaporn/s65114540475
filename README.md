@@ -4,7 +4,7 @@
 
 cd ST_65114540462 
 
-ใช้คำสั่ง docker compose -d --build 
+ใช้คำสั่ง docker compose up -d --build 
 
 ใช้คำสั่ง docker compose exec web python manage.py createsuperuser --username admin --email great212224236248@gmail.com   
 
