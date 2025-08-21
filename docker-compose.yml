@@ -7,7 +7,7 @@ services:
       postgres:
         condition: service_healthy
     ports:
-      - "8000:8000"
+      - "10462:8000"   # เว็บ -> 1XXXX
     networks:
       - appnet
     restart: unless-stopped
@@ -26,6 +26,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 20
+    ports:
+      - "20462:5432"   # DB -> 2XXXX (แค่ expose ออกนอกเครื่อง)
     networks:
       - appnet
 
@@ -35,7 +37,7 @@ services:
     environment:
       - ADMINER_DEFAULT_SERVER=postgres
     ports:
-      - "8080:8080"  # เปิด http://<host>:8080 แล้วเลือก System=PostgreSQL, Server=postgres
+      - "30462:8080"   # Adminer -> 3XXXX
     networks:
       - appnet
 
