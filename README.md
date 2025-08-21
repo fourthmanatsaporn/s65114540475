@@ -13,3 +13,5 @@ cd ST_65114540462
 เพื่อสร้าง admin 
 
 เปิดไปที่ http://localhost:8000
+
+localhost:10462
