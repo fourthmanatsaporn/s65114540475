@@ -1,8 +1,8 @@
 เปิด Command Prompt 
 
-ใช้คำสั่ง git clone https://github.com/Freshmanatsanan/ST_65114540462
+ใช้คำสั่ง git clone https://github.com/fourthmanatsaporn/s65114540475
 
-cd ST_65114540462 
+cd ST_65114540475
 
 ใช้คำสั่ง docker compose up -d --build 
 
