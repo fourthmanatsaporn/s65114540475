@@ -26,8 +26,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 20
-    ports:
-      - "20462:5432"   # DB -> 2XXXX (แค่ expose ออกนอกเครื่อง)
+    #ports:
+    #  - "20462:5432"   # DB -> 2XXXX (แค่ expose ออกนอกเครื่อง)
     networks:
       - appnet
 
@@ -36,8 +36,8 @@ services:
     restart: unless-stopped
     environment:
       - ADMINER_DEFAULT_SERVER=postgres
-    ports:
-      - "30462:8080"   # Adminer -> 3XXXX
+    #ports:
+    #  - "30462:8080"   # Adminer -> 3XXXX
     networks:
       - appnet
 
