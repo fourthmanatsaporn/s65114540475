@@ -7,7 +7,7 @@ services:
       postgres:
         condition: service_healthy
     ports:
-      - "10462:8000"   # เว็บ -> 1XXXX
+      - "10475:8000"   # เว็บ -> 1XXXX
     networks:
       - appnet
     restart: unless-stopped
